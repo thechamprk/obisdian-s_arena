@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Year Grid Gallery</title>
+  <meta name="viewport" content="width=600, initial-scale=1.0">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f3e3c7;
+      min-height: 100vh;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      width: 100vw;
+      min-height: 100vh;
+    }
+    .top-bar {
+      width: 100vw;
+      height: 32px;
+      background: #000;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+    .content {
+      margin-top: 32px;
+      padding: 32px 0 32px 0;
+      min-height: calc(100vh - 32px);
+      box-sizing: border-box;
+      width: 100vw;
+    }
+    .year-label {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 12px auto;
+      font-size: 18px;
+      font-family: inherit;
+      width: 90px;
+      height: 28px;
+      border-radius: 3px;
+      background: #d2c4aa;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.07);
+      color: #111;
+      text-align: center;
+    }
+    .year-label.year-2025 {
+      background: #f3e3c7;
+      border: 2px solid #995fff;
+      color: #111;
+      box-shadow: 1px 2px 3px #995fff55;
+      margin-bottom: 18px;
+    }
+    .year-label.year-2024 {
+      background: #f3e3c7;
+      border: 2px solid #228B22;
+      color: #111;
+      box-shadow: 1px 2px 3px #228B2255;
+      margin-bottom: 18px;
+    }
+    .year-label.year-2023 {
+      background: #f3e3c7;
+      border: 2px solid #0077b6;
+      color: #111;
+      box-shadow: 1px 2px 3px #0077b655;
+      margin-bottom: 18px;
+    }
+
+    /* Horizontal scroll section for each year */
+    .horizontal-scroll-container {
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
+      padding-bottom: 10px;
+      margin: 0 0 45px 0;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .horizontal-scroll-row {
+      display: inline-flex;
+      gap: 48px; /* increased gap for bigger images */
+    }
+    .horizontal-scroll-row .grid-box {
+      background: #f9f6ef;
+      width: 220px;   /* increased from 140px */
+      height: 220px;  /* increased from 140px */
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6em;
+      margin-bottom: 0;
+      flex: 0 0 auto;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+    .horizontal-scroll-row .grid-box:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    }
+
+    /* Responsive for less than 700px width */
+    @media (max-width: 900px) {
+      .horizontal-scroll-row {
+        gap: 18px;
+      }
+      .horizontal-scroll-row .grid-box {
+        width: 44vw;
+        height: 44vw;
+        min-width: 110px;
+        min-height: 110px;
+        max-width: 250px;
+        max-height: 250px;
+      }
+    }
+
+    /* Always show horizontal scrollbar, and style for better UX */
+    .horizontal-scroll-container {
+      scrollbar-width: thin;
+      scrollbar-color: #995fff #f3e3c7;
+    }
+    .horizontal-scroll-container::-webkit-scrollbar {
+      height: 14px;
+      background: #f3e3c7;
+    }
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
+      background: #995fff;
+      border-radius: 6px;
+    }
+    /* Different color scrollbars for different years */
+    .horizontal-scroll-container.year-2024 {
+      scrollbar-color: #228B22 #f3e3c7;
+    }
+    .horizontal-scroll-container.year-2024::-webkit-scrollbar-thumb {
+      background: #228B22;
+    }
+    .horizontal-scroll-container.year-2023 {
+      scrollbar-color: #0077b6 #f3e3c7;
+    }
+    .horizontal-scroll-container.year-2023::-webkit-scrollbar-thumb {
+      background: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="content">
+    <div class="year-label year-2025">2025</div>
+    <div class="horizontal-scroll-container year-2025">
+      <div class="horizontal-scroll-row">
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+      </div>
+    </div>
+    <div class="year-label year-2024">2024</div>
+    <div class="horizontal-scroll-container year-2024">
+      <div class="horizontal-scroll-row">
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+      </div>
+    </div>
+    <div class="year-label year-2023">2023</div>
+    <div class="horizontal-scroll-container year-2023">
+      <div class="horizontal-scroll-row">
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+        <div class="grid-box"></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

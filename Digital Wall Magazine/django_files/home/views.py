@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def index(request):
-    return render(request, 'index.htm')
+    return render(request, 'index.html')
+    #return HttpResponse("This is Homepage")
 
 def blogs(request):
     return HttpResponse("This is Blogs")

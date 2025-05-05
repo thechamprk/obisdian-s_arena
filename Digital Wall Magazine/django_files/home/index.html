@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Digital Wall Magazine</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>Welcome to the Digital Wall Magazine</h1>
+        <p>Explore articles, stories, and more from our college!</p>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/categories/">Categories</a></li>
+            <li><a href="/submit/">Submit Article</a></li>
+            <li><a href="/contact/">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <h2>Latest Articles</h2>
+        {% for article in articles %}
+            <div class="article-card">
+                <h3>{{ article.title }}</h3>
+                <p><strong>By:</strong> {{ article.author.username }} | <em>{{ article.publish_date|date:"M d, Y" }}</em></p>
+                {% if article.image %}
+                    <img src="{{ article.image.url }}" alt="Article Image" width="200">
+                {% endif %}
+                <p>{{ article.content|truncatewords:30 }}</p>
+                <a href="{% url 'article_detail' article.id %}">Read More</a>
+            </div>
+        {% empty %}
+            <p>No articles yet. Stay tuned!</p>
+        {% endfor %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; {{ year }} Digital Wall Magazine - All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

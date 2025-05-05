@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - Digital Wall Magazine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts Montserrat and Playfair Display -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #e8dbc2;
+      color: #111;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      width: 100%;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      position: relative;
+      z-index: 10;
+    }
+    .navbar .circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #ccc;
+      margin: 4px 0 4px 16px;
+      flex-shrink: 0;
+    }
+    .navbar .nav-links {
+      display: flex;
+      gap: 38px;
+      margin-left: auto;
+      margin-right: 24px;
+      align-items: center;
+      height: 100%;
+    }
+    .navbar .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Montserrat', 'Georgia', serif;
+      font-size: 22px;
+      transition: color 0.2s;
+      line-height: 1;
+      padding: 0 4px;
+      position: relative;
+    }
+    .navbar .nav-links a:hover {
+      color: #ffecb3;
+    }
+    .navbar .login-btn {
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 24px;
+      font-size: 20px;
+      font-family: 'Montserrat', 'Georgia', serif;
+      margin-left: 10px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .navbar .login-btn:hover {
+      background: #b9e7bc;
+      color: #000;
+    }
+    .about-section {
+      max-width: 900px;
+      margin: 60px auto 0 auto;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px 0 rgba(0,0,0,0.07);
+      padding: 40px 40px 32px 40px;
+    }
+    .about-title {
+      font-size: 48px;
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 18px 0;
+      color: #333;
+    }
+    .about-desc {
+      font-size: 22px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #222;
+      margin-top: 0;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .about-credits {
+      font-size: 17px;
+      color: #555;
+      margin-top: 32px;
+      font-style: italic;
+    }
+    @media (max-width: 750px) {
+      .about-section {
+        padding: 20px 10px 12px 10px;
+      }
+      .about-title {
+        font-size: 30px;
+      }
+      .about-desc {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="circle"></div>
+    <div class="nav-links">
+      <a href="index.html">Blogs</a>
+      <a href="about.html">About Us</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="#">Notice</a>
+      <button class="login-btn">Login</button>
+    </div>
+  </div>
+  <section class="about-section">
+    <div class="about-title">About Digital Wall Magazine</div>
+    <div class="about-desc">
+      Digital Wall Magazine is a vibrant web platform created for students to showcase their creativity, share technical articles, and stay updated with college news and notices. Our mission is to empower students and faculty through technology, bringing together writers, artists, and innovators in one collaborative space.
+      <br><br>
+      On this platform, you’ll find blog posts, artwork, academic resources, and official announcements—all curated for and by our college community. Join us in building a digital legacy!
+    </div>
+    <div class="about-credits">
+      Powered by students of [Your College Name].<br>
+      For suggestions, contact the editorial team.
+    </div>
+  </section>
+</body>
+</html>

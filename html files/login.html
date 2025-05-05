@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      min-width: 100vw;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #111;
+      overflow: hidden;
+    }
+    .main-container {
+      width: 100vw;
+      height: 92vh;
+      margin-top: 4vh;
+      margin-bottom: 4vh;
+      display: flex;
+      flex-direction: row;
+    }
+    .left-half {
+      background: #b3e4bc;
+      width: 35vw;
+      min-width: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .right-half {
+      background: #e8dbc2;
+      width: 65vw;
+      min-width: 350px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .user-icon {
+      width: 320px;
+      height: 320px;
+      border-radius: 50%;
+      background: #ccc;
+      border: 2px solid #333;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .user-icon-svg {
+      width: 85%;
+      height: 85%;
+      display: block;
+      margin: auto;
+    }
+    .login-card {
+      background: #fff;
+      border-radius: 36px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      padding: 50px 60px 36px 60px;
+      min-width: 420px;
+      max-width: 440px;
+      min-height: 330px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .login-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 34px;
+      letter-spacing: 2px;
+    }
+    .form-group {
+      width: 100%;
+      margin-bottom: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .form-label {
+      font-size: 20px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #222;
+      font-weight: 400;
+      flex: 0 0 120px;
+      margin-right: 10px;
+    }
+    .form-input {
+      flex: 1;
+      height: 36px;
+      border-radius: 22px;
+      border: 1.5px solid #bcbcbc;
+      background: #f3f3f3;
+      font-size: 18px;
+      padding: 0 18px;
+      outline: none;
+      transition: border 0.2s;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .form-input:focus {
+      border: 1.5px solid #b3e4bc;
+    }
+    .forgot-link {
+      width: 100%;
+      text-align: left;
+      font-size: 17px;
+      color: #222;
+      margin-bottom: 30px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .login-btn {
+      margin: 0 auto;
+      margin-top: 8px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 28px;
+      padding: 13px 54px;
+      font-size: 26px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      cursor: pointer;
+      font-weight: 400;
+      letter-spacing: 1px;
+      transition: background 0.19s, color 0.19s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    .login-btn:hover {
+      background: #333;
+      color: #b3e4bc;
+    }
+    @media (max-width: 900px) {
+      .main-container {
+        flex-direction: column;
+      }
+      .left-half, .right-half {
+        width: 100vw;
+        min-width: unset;
+        min-height: 240px;
+        height: 40vh;
+      }
+      .right-half {
+        min-height: 330px;
+        height: 60vh;
+        justify-content: flex-start;
+        padding-top: 16px;
+      }
+      .login-card {
+        min-width: 240px;
+        max-width: 95vw;
+        padding: 26px 8vw;
+      }
+    }
+    @media (max-width: 600px) {
+      .user-icon {
+        width: 150px;
+        height: 150px;
+      }
+      .login-card {
+        min-width: 0;
+        padding: 18px 3vw;
+      }
+      .login-title {
+        font-size: 25px;
+      }
+      .form-label {
+        font-size: 14px;
+        flex: 0 0 70px;
+      }
+      .form-input {
+        font-size: 15px;
+      }
+      .login-btn {
+        font-size: 19px;
+        padding: 10px 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="left-half">
+      <div class="user-icon">
+        <!-- Simple user SVG avatar -->
+        <svg class="user-icon-svg" viewBox="0 0 200 200">
+          <circle cx="100" cy="100" r="100" fill="#bdbdbd" stroke="#333" stroke-width="1"/>
+          <circle cx="100" cy="90" r="48" fill="#999" opacity="0.5"/>
+          <path d="M30,170 Q100,120 170,170" fill="#999" opacity="0.5"/>
+        </svg>
+      </div>
+    </div>
+    <div class="right-half">
+      <form class="login-card" autocomplete="off">
+        <div class="login-title">Login</div>
+        <div class="form-group">
+          <span class="form-label">Username</span>
+          <input type="text" class="form-input" placeholder="" required>
+        </div>
+        <div class="form-group">
+          <span class="form-label">Password</span>
+          <input type="password" class="form-input" placeholder="" required>
+        </div>
+        <a href="#" class="forgot-link">Forgot Password ?</a>
+        <button type="submit" class="login-btn">LET’S GO</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

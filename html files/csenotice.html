@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notice Section</title>
+  <style>
+    /* General styles */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #EDDDC3;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    /* Header Section */
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .header h1 {
+      font-size: 2.8em;
+      color: #333;
+      margin: 0;
+    }
+
+    .header p {
+      font-size: 1.2em;
+      color: #555;
+      margin: 5px 0 0;
+    }
+
+    /* Notice container */
+    .notice-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    /* Notice card */
+    .notice {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: max-height 0.5s ease, padding 0.3s ease, background-color 0.3s ease;
+      max-height: 70px;
+      padding: 20px;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .notice:hover {
+      background-color: #f9f9f9;
+    }
+
+    .notice .icon {
+      flex-shrink: 0;
+      width: 50px;
+      height: 50px;
+      background-color: #B3E1B2;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5em;
+      color: white;
+    }
+
+    .notice h3 {
+      font-size: 1.5em;
+      margin: 0;
+      color: #333;
+      flex-grow: 1;
+    }
+
+    .notice p {
+      font-size: 1em;
+      color: #555;
+      margin: 10px 0 0;
+      display: none;
+    }
+
+    /* Expanded notice */
+    .notice.expanded {
+      max-height: 300px;
+      padding: 20px;
+    }
+
+    .notice.expanded p {
+      display: block;
+    }
+
+    /* Animation Keyframes */
+    @keyframes expand {
+      from {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .notice.expanded {
+      animation: expand 0.3s ease;
+    }
+
+    /* Decorative Section */
+    .decorative-section {
+      margin: 30px auto;
+      max-width: 900px;
+      text-align: center;
+    }
+
+    .decorative-section img {
+      width: 80px;
+      height: 80px;
+      margin: 10px;
+      animation: float 3s infinite ease-in-out;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Footer Section */
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      color: #777;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <h1>CSE Notice Board</h1>
+    <p>Important updates and announcements for everyone</p>
+  </div>
+
+  <!-- Decorative Section -->
+  <div class="decorative-section">
+    <img src="https://img.icons8.com/clouds/100/000000/announcement.png" alt="Announcement Icon">
+    <img src="https://img.icons8.com/clouds/100/000000/bell.png" alt="Bell Icon">
+    <img src="https://img.icons8.com/clouds/100/000000/megaphone.png" alt="Megaphone Icon">
+  </div>
+
+  <!-- Notice Container -->
+  <div class="notice-container">
+    <div class="notice" onclick="toggleNotice(this)">
+      <div class="icon">📅</div>
+      <h3>Exam Schedule Update</h3>
+      <p>The end-term exams for the Spring semester will now begin from May 15th, 2025, instead of May 20th. Please check the updated timetable on the official portal.</p>
+    </div>
+    <div class="notice" onclick="toggleNotice(this)">
+      <div class="icon">📚</div>
+      <h3>Library Notice: Extended Hours</h3>
+      <p>The library will remain open until 10 PM during the exam season. Students are encouraged to utilize this extended time for their preparation.</p>
+    </div>
+    <div class="notice" onclick="toggleNotice(this)">
+      <div class="icon">🤖</div>
+      <h3>Workshop: AI and Machine Learning</h3>
+      <p>A free workshop on AI and Machine Learning will be conducted on May 10th, 2025. Registration is open now on the department noticeboard.</p>
+    </div>
+    <div class="notice" onclick="toggleNotice(this)">
+      <div class="icon">🏃</div>
+      <h3>Sports Meet 2025</h3>
+      <p>The annual sports meet is scheduled for May 25th, 2025. Students interested in participating can contact the physical education department for registration details.</p>
+    </div>
+    <div class="notice" onclick="toggleNotice(this)">
+      <div class="icon">🩸</div>
+      <h3>Blood Donation Camp</h3>
+      <p>A blood donation camp will be organized on May 12th, 2025, at the college auditorium. Volunteers are requested to register at the medical office.</p>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="footer">
+    <p>&copy; 2025 Digital Wall Magazine | All Rights Reserved</p>
+  </div>
+
+  <script>
+    // Function to toggle notice expansion
+    function toggleNotice(noticeElement) {
+      // Check if the notice is already expanded
+      const isExpanded = noticeElement.classList.contains('expanded');
+
+      // Collapse all other notices
+      document.querySelectorAll('.notice').forEach(notice => {
+        notice.classList.remove('expanded');
+      });
+
+      // Expand the clicked notice if it was not already expanded
+      if (!isExpanded) {
+        noticeElement.classList.add('expanded');
+      }
+    }
+  </script>
+
+</body>
+</html>

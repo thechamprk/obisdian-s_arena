@@ -12,43 +12,44 @@
       margin: 0;
       padding: 0;
       height: 100%;
-      background: #222; /* For border effect */
       box-sizing: border-box;
+      background: #222;
     }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
       background: #e8dbc2;
       color: #111;
-      height: 100%;
       min-height: 100vh;
       box-sizing: border-box;
     }
-    /* Navbar styles */
     .navbar {
       width: 100%;
       background: #000;
       color: #fff;
       display: flex;
       align-items: center;
-      padding: 0;
       height: 56px;
       position: relative;
-      box-sizing: border-box;
       z-index: 10;
+      box-sizing: border-box;
     }
     .navbar .circle {
-      width: 48px;
-      height: 48px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
       background: #ccc;
-      margin: 4px 0 4px 16px;
+      margin: 7px 0 7px 16px;
       flex-shrink: 0;
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png');
+      background-size: cover;
+      background-position: center;
+      border: 2px solid #fff;
     }
     .navbar .nav-links {
       display: flex;
-      gap: 38px;
+      gap: 28px;
       margin-left: auto;
-      margin-right: 24px;
+      margin-right: 28px;
       align-items: center;
       height: 100%;
     }
@@ -61,7 +62,7 @@
       border: none;
       color: #fff;
       font-family: 'Montserrat', 'Georgia', serif;
-      font-size: 22px;
+      font-size: 20px;
       cursor: pointer;
       padding: 0 4px;
       transition: color 0.2s;
@@ -88,7 +89,7 @@
       padding: 10px 18px;
       text-decoration: none;
       display: block;
-      font-size: 18px;
+      font-size: 17px;
       font-family: 'Montserrat', Arial, sans-serif;
       transition: background 0.17s, color 0.17s;
     }
@@ -100,17 +101,19 @@
     .navbar .nav-links .dropdown:focus-within .dropdown-content {
       display: block;
     }
-    .navbar .nav-links a {
+    .navbar .nav-links a, .navbar .nav-links button {
       color: #fff;
       text-decoration: none;
       font-family: 'Montserrat', 'Georgia', serif;
-      font-size: 22px;
+      font-size: 20px;
       transition: color 0.2s;
       line-height: 1;
       padding: 0 4px;
-      position: relative;
+      background: none;
+      border: none;
+      cursor: pointer;
     }
-    .navbar .nav-links a:hover {
+    .navbar .nav-links a:hover, .navbar .nav-links button:hover {
       color: #ffecb3;
     }
     .navbar .login-btn {
@@ -119,223 +122,149 @@
       border: none;
       border-radius: 8px;
       padding: 5px 24px;
-      font-size: 20px;
+      font-size: 18px;
       font-family: 'Montserrat', 'Georgia', serif;
       margin-left: 10px;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, color 0.2s;
     }
     .navbar .login-btn:hover {
       background: #b9e7bc;
       color: #000;
     }
 
-    /* Hero/main section styles */
-    .hero-section {
-      margin: 0 auto;
-      width: 97%;
-      max-width: 98vw;
-      min-width: 310px;
-      background: none;
-      padding-top: 32px;
+    /* Layout */
+    .main-content {
+      background: #e8dbc2;
+      min-height: calc(100vh - 56px - 40px);
+      padding-bottom: 36px;
+      border-left: 10px solid #222;
+      border-right: 10px solid #222;
+      border-bottom: 10px solid #222;
+      width: 100%;
+      max-width: 100vw;
+    }
+    .header-row {
       display: flex;
-      justify-content: center;
+      flex-direction: row;
       align-items: flex-start;
+      justify-content: space-between;
+      background: linear-gradient(90deg, #b9e7bc 45%, #e8dbc2 45.1%);
+      padding: 36px 40px 0 40px;
+      border-radius: 0 0 48px 0;
+      box-sizing: border-box;
     }
-    .hero-content-wrapper {
-      width: 100%;
-      background: none;
-      display: flex;
-      flex-direction: row;
-      min-height: 650px;
-      border-radius: 0 0 0 0;
+    .main-title-block {
+      flex: 1.2;
+      min-width: 240px;
     }
-    .hero-left {
-      flex: 1.05;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 0 0 0 40px;
-      background: #b9e7bc;
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-      border-bottom-left-radius: 0;
-      border-top-right-radius: 48px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      min-height: 380px;
-      min-width: 350px;
-    }
-    .hero-main-bg {
-      background: #f3e3c7;
-      flex: 2;
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      align-items: stretch;
-      border-top-right-radius: 48px;
-      border-bottom-right-radius: 0;
-      border-bottom-left-radius: 0;
-      min-height: 650px;
-      width: 100%;
-    }
-    .hero-left-content {
-      padding: 48px 0 0 0;
-      max-width: 600px;
-    }
-    .hero-title {
-      font-size: 64px;
-      font-weight: 700;
-      margin: 0 0 24px 0;
-      letter-spacing: 1px;
-      font-family: 'Playfair Display', serif;
-      line-height: 1.05;
-    }
-    .hero-desc {
-      font-size: 24px;
-      margin-bottom: 32px;
-      margin-top: 8px;
-      color: #222;
-      font-weight: 400;
+    .main-title {
+      font-size: 48px;
       font-family: 'Montserrat', Arial, sans-serif;
-      line-height: 1.3;
-      max-width: 430px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .main-desc {
+      font-size: 18px;
+      margin-bottom: 18px;
+      max-width: 440px;
     }
     .get-started-btn {
       background: #000;
       color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 10px 28px;
-      font-size: 21px;
+      padding: 9px 24px;
+      font-size: 17px;
       font-family: 'Montserrat', Arial, sans-serif;
       cursor: pointer;
-      margin-bottom: 36px;
-      margin-top: 0;
+      margin-bottom: 22px;
       transition: background 0.2s, color 0.2s;
+      margin-top: 6px;
     }
     .get-started-btn:hover {
       background: #222;
       color: #b9e7bc;
     }
-    .hero-cards {
+    .image-box {
+      background: #fff;
+      border-radius: 28px;
+      box-shadow: 3px 6px 16px 0 rgba(0,0,0,0.12);
+      width: 630px;
+      height: 470px;
+      margin-left: 34px;
+      margin-right: 10px;
+      margin-top: 6px;
       display: flex;
-      gap: 26px;
-      margin-top: 8px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
-    .hero-card {
-      width: 132px;
-      height: 170px;
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Events section */
+    .section-label {
+      font-size: 20px;
+      color: #222;
+      background: #b9b3a7;
+      display: inline-block;
+      padding: 7px 22px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin: 34px 0 12px 40px;
+      box-shadow: 1px 2px 7px #c8c8c8;
+    }
+    .events-row {
+      display: flex;
+      flex-direction: row;
+      gap: 24px;
+      margin-left: 40px;
+      margin-bottom: 10px;
+      margin-right: 40px;
+    }
+    .event-card {
       background: #fff;
       border-radius: 14px;
       box-shadow: 0 4px 12px 0 rgba(0,0,0,0.10);
+      width: 120px;
+      height: 160px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
       flex-direction: column;
       text-align: center;
+      padding: 0;
+      margin-bottom: 16px;
+      position: relative;
     }
-    .hero-card img {
+    .event-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 14px;
-      display: block;
     }
-    .hero-card-caption {
-      font-size: 13px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      padding: 5px 7px;
+    @media (max-width: 1000px) {
+      .header-row { flex-direction: column; padding: 24px 8vw 0 8vw; }
+      .main-title-block { margin-bottom: 24px; }
+      .image-box { margin: 0 auto 0 auto; }
+      .section-label { margin: 34px 0 12px 8vw; }
+      .events-row { margin-left: 8vw; margin-right: 8vw; gap: 12px; }
     }
-    .hero-right {
-      flex: 1.15;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      min-width: 350px;
-      min-height: 450px;
-      padding: 38px 48px 0 0;
-      background: none;
+    @media (max-width: 650px) {
+      .main-title {font-size: 22px;}
+      .main-desc {font-size: 13px;}
+      .header-row {padding: 16px 6vw 0 6vw;}
+      .section-label {font-size: 13px; padding: 6px 10px;}
+      .event-card {width: 70px; height: 80px;}
+      .events-row {gap: 5px;}
+      .image-box {width: 180px; height: 120px;}
     }
-    .hero-right-card {
-      background: #f3e3c7;
-      border-radius: 48px;
-      box-shadow: 8px 12px 18px 0 rgba(0,0,0,0.13);
-      padding: 30px 32px;
-      margin-top: 0;
-      min-width: 380px;
-      min-height: 380px;
-      max-width: 450px;
-      max-height: 450px;
-      aspect-ratio: 1/1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      /* shadow for floating look */
-    }
-    /* Responsive Design */
-    @media (max-width: 1100px) {
-      .hero-content-wrapper {
-        flex-direction: column;
-        min-height: 700px;
-        border-radius: 0;
-      }
-      .hero-main-bg {
-        flex-direction: column;
-        min-height: 400px;
-        border-radius: 0;
-      }
-      .hero-left, .hero-right {
-        min-width: 200px;
-        padding: 0 0 0 0;
-      }
-      .hero-right {
-        padding: 24px 0 0 0;
-        justify-content: center;
-      }
-      .hero-right-card {
-        margin: 0 auto;
-      }
-    }
-    @media (max-width: 750px) {
-      .hero-section {
-        width: 100vw;
-        min-width: unset;
-        padding: 0;
-      }
-      .hero-left {
-        padding: 0 0 0 0;
-        min-width: 0;
-      }
-      .hero-left-content {
-        padding: 32px 12px 0 12px;
-      }
-      .hero-title {
-        font-size: 36px;
-      }
-      .hero-desc {
-        font-size: 17px;
-      }
-      .hero-card {
-        width: 94px;
-        height: 122px;
-      }
-      .hero-right {
-        padding: 16px 0 0 0;
-        min-width: 0;
-      }
-      .hero-right-card {
-        min-width: 190px;
-        min-height: 190px;
-        max-width: 220px;
-        max-height: 220px;
-        border-radius: 30px;
-        padding: 8px 9px;
-      }
-    }
+    /* End */
   </style>
 </head>
 <body>
@@ -343,102 +272,65 @@
   <div class="navbar">
     <div class="circle"></div>
     <div class="nav-links">
-      <a href="#">Blogs</a>
+      <div class="dropdown">
+        <button class="dropbtn">Blogs</button>
+        <div class="dropdown-content">
+          <a href="csenotice.html">CSE</a>
+          <a href="ecenotice.html">ECE</a>
+          <a href="eenotice.html">EE</a>
+          <a href="menotice.html">ME</a>
+          <a href="cenotice.html">CE</a>
+        </div>
+      </div>
       <a href="about.html">About Us</a>
       <a href="gallery.html">Gallery</a>
-      <a href="#">Notice</a>
-      <a href="login.html">Login</a>
+      <div class="dropdown">
+        <button class="dropbtn">Notice</button>
+        <div class="dropdown-content">
+          <a href="csenotice.html">CSE</a>
+          <a href="ecenotice.html">ECE</a>
+          <a href="eenotice.html">EE</a>
+          <a href="menotice.html">ME</a>
+          <a href="cenotice.html">CE</a>
+        </div>
+      </div>
+      <a href="login.html" class="login-btn">Login</a>
     </div>
   </div>
-
-  <!-- Hero/Main Section -->
-  <section class="hero-section">
-    <div class="hero-content-wrapper">
-      <div class="hero-left">
-        <div class="hero-left-content">
-          <div class="hero-title">Digital Wall<br>Magazine</div>
-          <div class="hero-desc">
-            A Web-Based Platform for Student Blogs,<br>
-            Artwork, Tech Articles and<br>
-            Departmental Notice
-          </div>
-          <button class="get-started-btn">Get Started</button>
-          <div class="hero-cards">
-            <div class="hero-card">
-              <img src="https://i.imgur.com/5S7y7dm.png" alt="Hackmanthan poster">
-            </div>
-            <div class="hero-card">
-              <img src="https://i.imgur.com/2qO5l3W.png" alt="Design Thinking Workshop poster">
-            </div>
-            <div class="hero-card">
-              <img src="https://i.imgur.com/o5g4M3M.png" alt="Hindi article news clipping">
-            </div>
-          </div>
+  <div class="main-content">
+    <!-- Header Row -->
+    <div class="header-row">
+      <div class="main-title-block">
+        <div class="main-title">Digital Wall<br>Magazine</div>
+        <div class="main-desc">
+          A Web-Based Platform for Student Blogs,<br>
+          Artwork, Tech Articles and<br>
+          Departmental Notice
         </div>
+        <button class="get-started-btn">Get Started</button>
       </div>
-      <div class="hero-main-bg">
-        <div class="hero-right">
-          <div class="hero-right-card">
-            <!-- SVG illustration, similar to your image reference -->
-            <svg width="320" height="320" viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="320" height="320" rx="40" fill="#f3e3c7"/>
-              <!-- Bulbs -->
-              <ellipse cx="87" cy="85" rx="34" ry="36" fill="#FFD65C"/>
-              <ellipse cx="160" cy="85" rx="34" ry="36" fill="#FFD65C"/>
-              <ellipse cx="233" cy="85" rx="34" ry="36" fill="#FFD65C"/>
-              <!-- Bulb bases -->
-              <rect x="66" y="110" width="42" height="14" rx="6" fill="#CFCFCF"/>
-              <rect x="139" y="110" width="42" height="14" rx="6" fill="#CFCFCF"/>
-              <rect x="212" y="110" width="42" height="14" rx="6" fill="#CFCFCF"/>
-              <!-- Bulb highlights -->
-              <ellipse cx="80" cy="70" rx="8" ry="6" fill="#fff" opacity="0.25"/>
-              <ellipse cx="153" cy="70" rx="8" ry="6" fill="#fff" opacity="0.25"/>
-              <ellipse cx="226" cy="70" rx="8" ry="6" fill="#fff" opacity="0.25"/>
-              <!-- Light rays -->
-              <g stroke="#fff" stroke-width="4">
-                <line x1="87" y1="35" x2="87" y2="19"/>
-                <line x1="160" y1="35" x2="160" y2="19"/>
-                <line x1="233" y1="35" x2="233" y2="19"/>
-                <line x1="53" y1="54" x2="37" y2="38"/>
-                <line x1="120" y1="54" x2="136" y2="38"/>
-                <line x1="199" y1="54" x2="183" y2="38"/>
-                <line x1="266" y1="54" x2="282" y2="38"/>
-              </g>
-              <!-- People -->
-              <!-- Woman -->
-              <g>
-                <rect x="65" y="160" width="17" height="63" rx="7" fill="#1b9cfc"/>
-                <rect x="65" y="223" width="11" height="44" rx="5" fill="#263238"/>
-                <rect x="71" y="223" width="11" height="44" rx="5" fill="#f48fb1"/>
-                <ellipse cx="74" cy="153" rx="13" ry="13" fill="#f48fb1"/>
-                <rect x="65" y="177" width="25" height="18" rx="5" fill="#fff"/>
-                <rect x="65" y="192" width="24" height="11" rx="3" fill="#1b9cfc"/>
-              </g>
-              <!-- Man Center -->
-              <g>
-                <rect x="148" y="167" width="17" height="70" rx="8" fill="#1b9cfc"/>
-                <rect x="148" y="237" width="11" height="47" rx="5" fill="#263238"/>
-                <rect x="154" y="237" width="11" height="47" rx="5" fill="#263238"/>
-                <ellipse cx="156" cy="158" rx="12" ry="13" fill="#fec89a"/>
-                <rect x="148" y="185" width="24" height="24" rx="6" fill="#fff"/>
-                <rect x="148" y="205" width="24" height="12" rx="3" fill="#1b9cfc"/>
-                <!-- yellow scarf -->
-                <rect x="166" y="180" width="24" height="7" rx="3.5" fill="#FFD65C"/>
-              </g>
-              <!-- Man right -->
-              <g>
-                <rect x="221" y="160" width="17" height="60" rx="8" fill="#1b9cfc"/>
-                <rect x="238" y="220" width="11" height="44" rx="5" fill="#263238"/>
-                <rect x="221" y="220" width="11" height="44" rx="5" fill="#263238"/>
-                <ellipse cx="230" cy="153" rx="12" ry="12" fill="#fec89a"/>
-                <rect x="221" y="177" width="20" height="20" rx="5" fill="#fff"/>
-                <rect x="221" y="195" width="20" height="10" rx="3" fill="#1b9cfc"/>
-              </g>
-            </svg>
-          </div>
-        </div>
+      <div class="image-box" >
+        <img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-06 at 01.28.15_185cb9ec.jpg" height="600px" width="200px" alt="Header Illustration" >
       </div>
     </div>
-  </section>
+    <!-- Latest Events -->
+    <div class="section-label">Latest Events</div>
+    <div class="events-row">
+      <div class="event-card"><img src="C:\Users\shrut\Documents\2025-1.jpg" alt="Hackmanthan poster"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Documents\2025-2.jpg" alt="Design Thinking Workshop poster"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 23.50.41_6a9a0c14.jpg"alt="Hindi article news clipping"></div>
+    </div>
+    <!-- Past Events -->
+    <div class="section-label">Past Events</div>
+    <div class="events-row">
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 23.40.31_f5fd4f6e.jpg" alt="Event 1"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 22.20.23_62f97b6a.jpg" alt="Event 2"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 23.49.21_b09eb14a.jpg" alt="Event 3"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 23.12.00_796bc9a8.jpg" alt="Event 4"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-05 at 23.46.04_a0a6efe9.jpg" alt="Event 5"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-06 at 02.01.53_737a5feb.jpg" alt="Event 6"></div>
+      <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-06 at 00.22.33_078ac502.jpg" alt="Event 7"></div>
+    </div>
+  </div>
 </body>
 </html>

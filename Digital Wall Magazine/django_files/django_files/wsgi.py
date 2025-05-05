@@ -1,5 +1,5 @@
 """
-WSGI config for digital_wall_magazine project.
+WSGI config for django_files project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'digital_wall_magazine.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_files.settings')
 
 application = get_wsgi_application()

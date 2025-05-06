@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Blog Creator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    :root {
+      --main-bg: #edddc3;
+      --main-black: #111;
+      --accent: #c1a36b;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--main-bg);
+      font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+      color: var(--main-black);
+      min-height: 100vh;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+    .blog-list {
+      flex: 1.5;
+      background: var(--main-black);
+      padding: 48px 32px 48px 48px;
+      box-sizing: border-box;
+      overflow-y: auto;
+      position: relative;
+      animation: slideInLeft 1s cubic-bezier(.6,-0.28,.74,.05);
+    }
+    .blog-list h2 {
+      color: var(--main-bg);
+      letter-spacing: 1px;
+      margin-bottom: 32px;
+    }
+    .sort-section {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      align-items: center;
+      justify-content: flex-start;
+      background: #222;
+      padding: 10px 16px;
+      border-radius: 14px;
+      box-shadow: 0 1px 8px #0002;
+      color: var(--main-bg);
+      font-size: 1.05em;
+    }
+    .sort-btn {
+      background: none;
+      border: none;
+      color: var(--main-bg);
+      font-weight: bold;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 6px 22px;
+      border-radius: 8px;
+      transition: background 0.18s, color 0.18s;
+      outline: none;
+      margin-right: 8px;
+    }
+    .sort-btn.active, .sort-btn:hover {
+      background: var(--accent);
+      color: var(--main-black);
+    }
+    .blog-post {
+      background: var(--main-bg);
+      border-radius: 16px;
+      box-shadow: 0 2px 12px #0002;
+      margin-bottom: 24px;
+      padding: 18px 22px;
+      animation: fadeIn 0.7s;
+      border-left: 8px solid var(--accent);
+      transition: transform 0.2s;
+      will-change: transform;
+      position: relative;
+    }
+    .blog-post:hover {
+      transform: scale(1.025) rotate(-0.5deg);
+      box-shadow: 0 6px 32px #0004;
+    }
+    .blog-post .meta {
+      font-size: 0.82em;
+      color: #7e6e3e;
+      margin-bottom: 6px;
+      font-style: italic;
+    }
+    .blog-post .content {
+      font-size: 1.07em;
+      color: var(--main-black);
+      margin-top: 4px;
+      line-height: 1.5;
+      word-break: break-word;
+    }
+    .blog-post .actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin: 8px 0 2px 0;
+    }
+    .like-btn {
+      background: none;
+      border: none;
+      color: var(--main-black);
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 3px 12px;
+      border-radius: 7px;
+      transition: background 0.16s, color 0.16s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .like-btn.liked {
+      color: var(--accent);
+      background: #fff8e4;
+    }
+    .comments-section {
+      margin-top: 14px;
+      background: #f4eedc;
+      border-radius: 10px;
+      padding: 11px 13px 10px 13px;
+      box-shadow: 0 1px 5px #0001;
+      font-size: 0.97em;
+    }
+    .comment {
+      margin-bottom: 9px;
+      border-left: 4px solid var(--accent);
+      padding-left: 9px;
+      word-break: break-word;
+    }
+    .comment-meta {
+      font-size: 0.85em;
+      color: #a28d5a;
+      margin-bottom: 1px;
+      font-style: italic;
+    }
+    .add-comment-form {
+      display: flex;
+      gap: 7px;
+      margin-top: 9px;
+      align-items: flex-end;
+    }
+    .add-comment-form input,
+    .add-comment-form textarea {
+      border: none;
+      background: #f9f6ec;
+      padding: 6px 9px;
+      border-radius: 5px;
+      font-size: 0.98em;
+      box-shadow: 0 1px 2px #0001;
+      outline: none;
+      resize: none;
+    }
+    .add-comment-form input {
+      width: 90px;
+    }
+    .add-comment-form textarea {
+      width: 100%;
+      min-height: 21px;
+      max-height: 55px;
+    }
+    .add-comment-form button {
+      background: var(--main-black);
+      color: var(--main-bg);
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      padding: 6px 11px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.18s;
+    }
+    .add-comment-form button:hover {
+      background: var(--accent);
+      color: var(--main-black);
+    }
+    .blog-form {
+      flex: 1;
+      background: var(--main-bg);
+      padding: 48px 48px 48px 32px;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: stretch;
+      animation: slideInRight 1s cubic-bezier(.6,-0.28,.74,.05);
+    }
+    .blog-form h2 {
+      color: var(--main-black);
+      margin-bottom: 24px;
+      letter-spacing: 1px;
+    }
+    .blog-form input, .blog-form textarea {
+      border: none;
+      background: #fffdf6;
+      margin-bottom: 20px;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 1em;
+      box-shadow: 0 1px 4px #0001;
+      transition: box-shadow 0.2s;
+      outline: none;
+      resize: none;
+    }
+    .blog-form input:focus, .blog-form textarea:focus {
+      box-shadow: 0 2px 8px var(--accent);
+    }
+    .blog-form button {
+      padding: 13px 0;
+      background: var(--main-black);
+      color: var(--main-bg);
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 6px;
+      box-shadow: 0 2px 10px #0002;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .blog-form button:hover {
+      background: var(--accent);
+      color: var(--main-black);
+      transform: scale(1.04);
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column-reverse;
+      }
+      .blog-list, .blog-form {
+        flex: unset;
+        width: 100%;
+        padding: 24px 8vw;
+      }
+      .sort-section {
+        margin-bottom: 14px;
+      }
+    }
+    @keyframes slideInLeft {
+      0% { transform: translateX(-80px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes slideInRight {
+      0% { transform: translateX(80px); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.97) }
+      100% { opacity: 1; transform: scale(1) }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Blog posts appear on the left -->
+    <div class="blog-list">
+      <h2>📝 Student Blogs</h2>
+      <div class="sort-section">
+        <span style="font-weight:600;">Sort by:</span>
+        <button class="sort-btn active" id="sort-popular" type="button">Top Comments</button>
+        <button class="sort-btn" id="sort-new" type="button">New Posts</button>
+      </div>
+      <div id="posts">
+        <!-- Blog posts will be injected here -->
+      </div>
+      <div id="no-posts" style="color:#cfc6a4; margin-top:40px; text-align:center;">
+        No blogs yet. Be the first to write!
+      </div>
+    </div>
+    <!-- Blog creation form on the right -->
+    <form class="blog-form" id="blogForm" autocomplete="off">
+      <h2>Create a Blog</h2>
+      <input type="text" id="author" placeholder="Your Name" maxlength="30" required />
+      <input type="text" id="title" placeholder="Blog Title" maxlength="60" required />
+      <textarea id="content" rows="7" placeholder="What's on your mind?" maxlength="700" required></textarea>
+      <button type="submit">Post Blog ➡</button>
+      <div id="success-msg" style="color:var(--accent); font-size:0.98em; margin-top:14px; display:none">
+        Blog posted! 🎉
+      </div>
+    </form>
+  </div>
+  <script>
+    // ------ DATA ------
+    const blogForm = document.getElementById('blogForm');
+    const postsDiv = document.getElementById('posts');
+    const noPostsDiv = document.getElementById('no-posts');
+    const successMsg = document.getElementById('success-msg');
+    const sortPopularBtn = document.getElementById('sort-popular');
+    const sortNewBtn = document.getElementById('sort-new');
+    let posts = [];
+    let currentSort = "popular"; // or "new"
+
+    // Utility for animated entry
+    function animateNewPost(postEl) {
+      postEl.style.opacity = 0;
+      postEl.style.transform = 'translateY(24px) scale(0.97)';
+      setTimeout(() => {
+        postEl.style.transition = 'opacity 0.7s cubic-bezier(.4,2,.3,1), transform 0.7s cubic-bezier(.4,2,.3,1)';
+        postEl.style.opacity = 1;
+        postEl.style.transform = 'translateY(0) scale(1)';
+      }, 50);
+    }
+
+    function renderPosts() {
+      postsDiv.innerHTML = '';
+      let postsToShow = [...posts];
+      if (currentSort === "popular") {
+        postsToShow.sort((a, b) => {
+          // Sort by comment count, then likes, then newest
+          const aScore = a.comments.length * 1000 + a.likes * 10 + Date.parse(a.dateObj || 0);
+          const bScore = b.comments.length * 1000 + b.likes * 10 + Date.parse(b.dateObj || 0);
+          return bScore - aScore;
+        });
+      } else {
+        postsToShow.sort((a, b) => Date.parse(b.dateObj || 0) - Date.parse(a.dateObj || 0));
+      }
+      if (postsToShow.length === 0) {
+        noPostsDiv.style.display = 'block';
+        return;
+      }
+      noPostsDiv.style.display = 'none';
+      postsToShow.forEach((post, idx) => {
+        const postEl = document.createElement('div');
+        postEl.className = 'blog-post';
+        postEl.innerHTML = `
+          <div class="meta">${post.title} — by ${post.author} • <span style="font-size:0.93em">${post.time}</span></div>
+          <div class="actions">
+            <button class="like-btn${post.likedByUser ? ' liked' : ''}" data-idx="${post.id}">
+              <span>👍</span> <span class="like-count">${post.likes}</span>
+            </button>
+            <span style="font-size:0.97em;">💬 <span class="comment-count">${post.comments.length}</span> comment${post.comments.length!==1?'s':''}</span>
+          </div>
+          <div class="content">${post.content.replace(/\n/g, '<br>')}</div>
+          <div class="comments-section" id="comments-${post.id}">
+            <div style="margin-bottom:7px;font-weight:600;">Comments</div>
+            <div class="comments-list">
+              ${post.comments.length === 0 ? '<span style="opacity:.61;">No comments yet</span>' : post.comments.map(comment => `
+                <div class="comment">
+                  <div class="comment-meta">${comment.author} • <span>${comment.time}</span></div>
+                  <div>${comment.text.replace(/\n/g, '<br>')}</div>
+                </div>
+              `).join('')}
+            </div>
+            <form class="add-comment-form" data-idx="${post.id}" autocomplete="off">
+              <input type="text" placeholder="Your Name" maxlength="24" name="author" />
+              <textarea rows="1" maxlength="140" placeholder="Add a comment..." name="text" required></textarea>
+              <button type="submit">➕</button>
+            </form>
+          </div>
+        `;
+        postsDiv.appendChild(postEl);
+        animateNewPost(postEl);
+      });
+      // Set up like button listeners
+      document.querySelectorAll('.like-btn').forEach(btn => {
+        btn.onclick = function() {
+          const idx = Number(btn.getAttribute('data-idx'));
+          const post = posts.find(p => p.id === idx);
+          if (!post) return;
+          post.likedByUser = !post.likedByUser;
+          post.likes += post.likedByUser ? 1 : -1;
+          renderPosts();
+        }
+      });
+      // Set up comment form listeners
+      document.querySelectorAll('.add-comment-form').forEach(form => {
+        form.onsubmit = function(e) {
+          e.preventDefault();
+          const idx = Number(form.getAttribute('data-idx'));
+          const post = posts.find(p => p.id === idx);
+          if (!post) return;
+          const formData = new FormData(form);
+          const author = (formData.get('author') || 'Anonymous').trim().slice(0,24);
+          const text = (formData.get('text') || '').trim();
+          if (!text) return;
+          const now = new Date();
+          const timeString = now.toLocaleString(undefined, { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short', year: '2-digit' });
+          post.comments.push({ author, text, time: timeString });
+          renderPosts();
+        };
+      });
+    }
+
+    blogForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const author = document.getElementById('author').value.trim() || 'Anonymous';
+      const title = document.getElementById('title').value.trim();
+      const content = document.getElementById('content').value.trim();
+      if (!title || !content) return;
+      blogForm.style.transform = 'scale(1.03)';
+      setTimeout(() => blogForm.style.transform = 'scale(1)', 120);
+      const now = new Date();
+      const timeString = now.toLocaleString(undefined, {
+        hour: '2-digit', minute: '2-digit',
+        day: '2-digit', month: 'short', year: '2-digit'
+      });
+      const post = {
+        id: Date.now() + Math.floor(Math.random()*10000),
+        author, title, content, time: timeString,
+        dateObj: now.toISOString(),
+        likes: 0,
+        likedByUser: false,
+        comments: []
+      };
+      posts.unshift(post);
+      renderPosts();
+      successMsg.style.display = 'block';
+      successMsg.style.opacity = '0';
+      setTimeout(() => {
+        successMsg.style.transition = 'opacity 0.7s';
+        successMsg.style.opacity = 1;
+      }, 30);
+      setTimeout(() => {
+        successMsg.style.opacity = 0;
+        setTimeout(() => successMsg.style.display = 'none', 700);
+      }, 1700);
+      blogForm.reset();
+    });
+
+    sortPopularBtn.onclick = () => {
+      currentSort = "popular";
+      sortPopularBtn.classList.add("active");
+      sortNewBtn.classList.remove("active");
+      renderPosts();
+    };
+    sortNewBtn.onclick = () => {
+      currentSort = "new";
+      sortNewBtn.classList.add("active");
+      sortPopularBtn.classList.remove("active");
+      renderPosts();
+    };
+
+    // Creative: Animate a floating pen on the right form
+    (function addFloatingPen() {
+      const pen = document.createElement("div");
+      pen.innerHTML = `
+        <svg width="50" height="50" viewBox="0 0 48 48" style="position:absolute; right:16px; top:32px; opacity:0.22; pointer-events:none; z-index:0;">
+          <g>
+            <rect x="17" y="7" width="14" height="30" rx="7" fill="#c1a36b" />
+            <rect x="21" y="34" width="6" height="7" rx="3" fill="#111" />
+            <ellipse cx="24" cy="7" rx="7" ry="3" fill="#b69e73" />
+          </g>
+        </svg>
+      `;
+      document.querySelector('.blog-form').appendChild(pen);
+    })();
+
+    // Creative: Floating particles on the left for animation
+    function createParticles() {
+  const area = document.querySelector('.blog-list');
+  for (let i = 0; i < 18; i++) {
+    const b = document.createElement('span');
+    b.style.position = 'absolute';
+    b.style.left = (Math.random() * 90 + 2) + '%';
+    b.style.top = (Math.random() * 96 + 2) + '%';
+    b.style.width = b.style.height = (Math.random() * 9 + 4) + 'px';
+    b.style.background = `rgba(237,221,195,${Math.random() * 0.25 + 0.13})`;
+    b.style.borderRadius = '50%';
+    b.style.pointerEvents = 'none';
+    b.style.zIndex = 0;
+    b.style.transition = 'top 8s linear, left 8s linear';
+    area.appendChild(b);
+    setInterval(() => {
+      b.style.top = (Math.random() * 96 + 2) + '%';
+      b.style.left = (Math.random() * 90 + 2) + '%';
+    }, Math.random() * 4000 + 4000);
+  }
+}
+
+    createParticles();
+
+    // Initial render
+    renderPosts();
+  </script>
+</body>
+</html>

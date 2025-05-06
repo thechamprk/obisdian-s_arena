@@ -242,12 +242,53 @@
       padding: 0;
       margin-bottom: 16px;
       position: relative;
+      cursor: pointer; /* Make all cards clickable */
+      transition: box-shadow 0.2s;
     }
     .event-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+      pointer-events: none; /* Prevent image from being "selected" */
     }
+    .event-card:active, .event-card:focus {
+      box-shadow: 0 0 0 3px #b9e7bc;
+      outline: none;
+    }
+
+    /* Modal styles */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(34,34,34,0.6);
+      justify-content: center;
+      align-items: center;
+      transition: background 0.25s;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-zoom-img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 24px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.35);
+      background: #fff;
+      animation: zoomIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+      object-fit: contain;
+    }
+    @keyframes zoomIn {
+      0% { transform: scale(0.6); opacity:0; }
+      70% { transform: scale(1.08); opacity: 1;}
+      100% { transform: scale(1); opacity:1; }
+    }
+
     @media (max-width: 1000px) {
       .header-row { flex-direction: column; padding: 24px 8vw 0 8vw; }
       .main-title-block { margin-bottom: 24px; }
@@ -272,16 +313,8 @@
   <div class="navbar">
     <div class="circle"></div>
     <div class="nav-links">
-      <div class="dropdown">
-        <button class="dropbtn">Blogs</button>
-        <div class="dropdown-content">
-          <a href="cseblog.html">CSE</a>
-          <a href="eceblog.html">ECE</a>
-          <a href="eeblog.html">EE</a>
-          <a href="meblog.html">ME</a>
-          <a href="ceblog.html">CE</a>
-        </div>
-      </div>
+      <!-- Blogs link (dropdown removed) -->
+      <a href="blog.html">Blogs</a>
       <a href="about.html">About Us</a>
       <a href="gallery.html">Gallery</a>
       <div class="dropdown">
@@ -307,7 +340,7 @@
           Artwork, Tech Articles and<br>
           Departmental Notice
         </div>
-        <button class="get-started-btn"><a href="login.html">Get Started</a></button>
+        <button class="get-started-btn"><a href="login.html" style="color: inherit; text-decoration: none;">Get Started</a></button>
       </div>
       <div class="image-box" >
         <img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-06 at 01.28.15_185cb9ec.jpg" height="600px" width="200px" alt="Header Illustration" >
@@ -332,5 +365,46 @@
       <div class="event-card"><img src="C:\Users\shrut\Downloads\WhatsApp Image 2025-05-06 at 00.22.33_078ac502.jpg" alt="Event 7"></div>
     </div>
   </div>
+
+  <!-- Modal for image zoom -->
+  <div class="modal-overlay" id="modalOverlay">
+    <img src="" alt="Zoomed Poster" class="modal-zoom-img" id="modalZoomImg">
+  </div>
+  <script>
+    // Only initialize after DOM loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get all event cards
+      const eventCards = document.querySelectorAll('.event-card');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalZoomImg = document.getElementById('modalZoomImg');
+
+      eventCards.forEach(card => {
+        card.addEventListener('click', function(e) {
+          const img = card.querySelector('img');
+          if (img && img.src) {
+            modalZoomImg.src = img.src;
+            modalZoomImg.alt = img.alt || '';
+            modalOverlay.classList.add('active');
+          }
+        });
+      });
+
+      // Close modal when clicking outside the image
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+          modalZoomImg.src = '';
+        }
+      });
+
+      // Also allow closing modal with ESC key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+          modalOverlay.classList.remove('active');
+          modalZoomImg.src = '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

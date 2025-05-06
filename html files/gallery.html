@@ -72,7 +72,6 @@
       margin-bottom: 18px;
     }
 
-    /* Horizontal scroll section for each year */
     .horizontal-scroll-container {
       overflow-x: auto;
       overflow-y: hidden;
@@ -84,12 +83,12 @@
     }
     .horizontal-scroll-row {
       display: inline-flex;
-      gap: 48px; /* increased gap for bigger images */
+      gap: 48px;
     }
     .horizontal-scroll-row .grid-box {
-      background: #f9f6ef;
-      width: 220px;   /* increased from 140px */
-      height: 220px;  /* increased from 140px */
+      background: #fff;
+      width: 220px;
+      height: 220px;
       border-radius: 8px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       border: none;
@@ -101,17 +100,25 @@
       flex: 0 0 auto;
       overflow: hidden;
       transition: box-shadow 0.2s;
+      position: relative;
+    }
+    .horizontal-scroll-row .grid-box img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      display: block;
     }
     .horizontal-scroll-row .grid-box:hover {
       box-shadow: 0 4px 12px rgba(0,0,0,0.10);
     }
 
-    /* Responsive for less than 700px width */
     @media (max-width: 900px) {
       .horizontal-scroll-row {
         gap: 18px;
       }
-      .horizontal-scroll-row .grid-box {
+      .horizontal-scroll-row .grid-box,
+      .horizontal-scroll-row .grid-box img {
         width: 44vw;
         height: 44vw;
         min-width: 110px;
@@ -121,7 +128,6 @@
       }
     }
 
-    /* Always show horizontal scrollbar, and style for better UX */
     .horizontal-scroll-container {
       scrollbar-width: thin;
       scrollbar-color: #995fff #f3e3c7;
@@ -134,7 +140,6 @@
       background: #995fff;
       border-radius: 6px;
     }
-    /* Different color scrollbars for different years */
     .horizontal-scroll-container.year-2024 {
       scrollbar-color: #228B22 #f3e3c7;
     }
@@ -155,47 +160,46 @@
     <div class="year-label year-2025">2025</div>
     <div class="horizontal-scroll-container year-2025">
       <div class="horizontal-scroll-row">
-        <div class="grid-box"></div>
-          <img src="assets/images/logo.jpeg">
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2025 Image 1"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="2025 Image 2"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2025 Image 3"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80" alt="2025 Image 4"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="2025 Image 5"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="2025 Image 6"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2025 Image 7"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="2025 Image 8"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2025 Image 9"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80" alt="2025 Image 10"></div>
       </div>
     </div>
     <div class="year-label year-2024">2024</div>
     <div class="horizontal-scroll-container year-2024">
       <div class="horizontal-scroll-row">
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2024 Image 1"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="2024 Image 2"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="2024 Image 3"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2024 Image 4"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="2024 Image 5"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2024 Image 6"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80" alt="2024 Image 7"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="2024 Image 8"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="2024 Image 9"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2024 Image 10"></div>
       </div>
     </div>
     <div class="year-label year-2023">2023</div>
     <div class="horizontal-scroll-container year-2023">
       <div class="horizontal-scroll-row">
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
-        <div class="grid-box"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="2023 Image 1"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2023 Image 2"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="2023 Image 3"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="2023 Image 4"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2023 Image 5"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101178521-c1a9136a3b99?auto=format&fit=crop&w=400&q=80" alt="2023 Image 6"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101162946-4377e57745c3?auto=format&fit=crop&w=400&q=80" alt="2023 Image 7"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="2023 Image 8"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=400&q=80" alt="2023 Image 9"></div>
+        <div class="grid-box"><img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="2023 Image 10"></div>
       </div>
     </div>
   </div>

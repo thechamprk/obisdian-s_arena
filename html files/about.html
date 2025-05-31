@@ -205,14 +205,35 @@
       <div class="about-title">About Digital Wall Magazine</div>
       <!-- Animated Heart Start -->
       <div style="display: flex; justify-content: center; margin: 32px 0 24px 0;">
-        <svg id="animated-heart" width="64" height="64" viewBox="0 0 64 64">
-          <path
-            d="M32 58s-18-13.5-18-26.5S22 8 32 20c10-12 18 0.5 18 11.5S32 58 32 58z"
-            fill="#e255a3">
-            <animateTransform attributeName="transform" type="scale"
-              values="1;1.15;1" keyTimes="0;0.5;1"
-              dur="1s" repeatCount="indefinite" additive="sum"/>
-          </path>
+        <svg id="animated-heart" width="48" height="48" viewBox="0 0 64 64" style="max-width:48px;max-height:48px;">
+          <g>
+            <path
+              d="M32 58s-18-13.5-18-26.5S22 8 32 20c10-12 18 0.5 18 11.5S32 58 32 58z"
+              fill="#e255a3">
+              <animateTransform attributeName="transform" type="scale"
+                values="1;1.25;1" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite" additive="sum"/>
+              <animate attributeName="fill"
+                values="#e255a3;#a14e7a;#e255a3" keyTimes="0;0.5;1"
+                dur="1.2s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="32" cy="20" r="6" fill="#fff" opacity="0.7">
+              <animate attributeName="r"
+                values="6;10;6" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity"
+                values="0.7;0.3;0.7" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="38" cy="26" r="2.5" fill="#fff" opacity="0.5">
+              <animate attributeName="r"
+                values="2.5;4;2.5" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity"
+                values="0.5;0.2;0.5" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+            </circle>
+          </g>
         </svg>
       </div>
       <!-- Animated Heart End -->

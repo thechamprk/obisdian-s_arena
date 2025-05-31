@@ -6,15 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     :root {
-      --main-bg: #edddc3;
-      --main-black: #111;
-      --accent: #c1a36b;
+      --main-bg: #f7fbe9; /* Lighter, softer background */
+      --main-black: #222;  /* Slightly softer black */
+      --accent: #7ec850;   /* Fresh green accent */
     }
     body {
       margin: 0;
       padding: 0;
       background: var(--main-bg);
-      font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
       color: var(--main-black);
       min-height: 100vh;
     }
@@ -25,7 +24,7 @@
     }
     .blog-list {
       flex: 1.5;
-      background: var(--main-black);
+      background: linear-gradient(135deg, #222 80%, #7ec85022 100%);
       padding: 48px 32px 48px 48px;
       box-sizing: border-box;
       overflow-y: auto;
@@ -33,7 +32,7 @@
       animation: slideInLeft 1s cubic-bezier(.6,-0.28,.74,.05);
     }
     .blog-list h2 {
-      color: var(--main-bg);
+      color: var(--accent);
       letter-spacing: 1px;
       margin-bottom: 32px;
     }
@@ -43,7 +42,7 @@
       margin-bottom: 24px;
       align-items: center;
       justify-content: flex-start;
-      background: #222;
+      background: #2e3d29;
       padding: 10px 16px;
       border-radius: 14px;
       box-shadow: 0 1px 8px #0002;
@@ -65,16 +64,16 @@
     }
     .sort-btn.active, .sort-btn:hover {
       background: var(--accent);
-      color: var(--main-black);
+      color: #fff;
     }
     .blog-post {
-      background: var(--main-bg);
+      background: #f9fef4;
+      border-left: 8px solid var(--accent);
       border-radius: 16px;
       box-shadow: 0 2px 12px #0002;
       margin-bottom: 24px;
       padding: 18px 22px;
       animation: fadeIn 0.7s;
-      border-left: 8px solid var(--accent);
       transition: transform 0.2s;
       will-change: transform;
       position: relative;
@@ -84,8 +83,8 @@
       box-shadow: 0 6px 32px #0004;
     }
     .blog-post .meta {
+      color: #6b8e23;
       font-size: 0.82em;
-      color: #7e6e3e;
       margin-bottom: 6px;
       font-style: italic;
     }
@@ -118,11 +117,11 @@
     }
     .like-btn.liked {
       color: var(--accent);
-      background: #fff8e4;
+      background: #eafbe2;
     }
     .comments-section {
       margin-top: 14px;
-      background: #f4eedc;
+      background: #f3fbe9;
       border-radius: 10px;
       padding: 11px 13px 10px 13px;
       box-shadow: 0 1px 5px #0001;
@@ -135,8 +134,8 @@
       word-break: break-word;
     }
     .comment-meta {
+      color: #7ec850;
       font-size: 0.85em;
-      color: #a28d5a;
       margin-bottom: 1px;
       font-style: italic;
     }
@@ -148,8 +147,8 @@
     }
     .add-comment-form input,
     .add-comment-form textarea {
+      background: #f7fbe9;
       border: none;
-      background: #f9f6ec;
       padding: 6px 9px;
       border-radius: 5px;
       font-size: 0.98em;
@@ -166,8 +165,8 @@
       max-height: 55px;
     }
     .add-comment-form button {
-      background: var(--main-black);
-      color: var(--main-bg);
+      background: var(--accent);
+      color: #fff;
       border: none;
       border-radius: 6px;
       font-size: 1em;
@@ -177,12 +176,12 @@
       transition: background 0.18s;
     }
     .add-comment-form button:hover {
-      background: var(--accent);
-      color: var(--main-black);
+      background: #222;
+      color: var(--accent);
     }
     .blog-form {
       flex: 1;
-      background: var(--main-bg);
+      background: #f7fbe9;
       padding: 48px 48px 48px 32px;
       box-sizing: border-box;
       display: flex;
@@ -192,13 +191,13 @@
       animation: slideInRight 1s cubic-bezier(.6,-0.28,.74,.05);
     }
     .blog-form h2 {
-      color: var(--main-black);
+      color: var(--accent);
       margin-bottom: 24px;
       letter-spacing: 1px;
     }
     .blog-form input, .blog-form textarea {
+      background: #f9fef4;
       border: none;
-      background: #fffdf6;
       margin-bottom: 20px;
       padding: 12px 16px;
       border-radius: 8px;
@@ -212,9 +211,9 @@
       box-shadow: 0 2px 8px var(--accent);
     }
     .blog-form button {
+      background: var(--accent);
+      color: #fff;
       padding: 13px 0;
-      background: var(--main-black);
-      color: var(--main-bg);
       font-size: 1.1em;
       font-weight: bold;
       border: none;
@@ -226,9 +225,40 @@
       transition: background 0.2s, transform 0.15s;
     }
     .blog-form button:hover {
-      background: var(--accent);
-      color: var(--main-black);
+      background: #222;
+      color: var(--accent);
       transform: scale(1.04);
+    }
+    .bubble-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .bubble {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.18;
+      background: radial-gradient(circle at 60% 40%, #eafbe2 0%, #7ec850 100%);
+      animation: bubble-move 12s linear infinite;
+      will-change: transform, opacity;
+    }
+    @keyframes bubble-move {
+      0% {
+        transform: translateY(100%) scale(0.7);
+        opacity: 0.18;
+      }
+      10% {
+        opacity: 0.28;
+      }
+      90% {
+        opacity: 0.28;
+      }
+      100% {
+        transform: translateY(-120%) scale(1.1);
+        opacity: 0;
+      }
     }
     @media (max-width: 900px) {
       .container {
@@ -261,6 +291,7 @@
   <div class="container">
     <!-- Blog posts appear on the left -->
     <div class="blog-list">
+      <div class="bubble-bg"></div>
       <h2>📝 Student Blogs</h2>
       <div class="sort-section">
         <span style="font-weight:600;">Sort by:</span>
@@ -437,44 +468,22 @@
       renderPosts();
     };
 
-    // Creative: Animate a floating pen on the right form
-    (function addFloatingPen() {
-      const pen = document.createElement("div");
-      pen.innerHTML = `
-        <svg width="50" height="50" viewBox="0 0 48 48" style="position:absolute; right:16px; top:32px; opacity:0.22; pointer-events:none; z-index:0;">
-          <g>
-            <rect x="17" y="7" width="14" height="30" rx="7" fill="#c1a36b" />
-            <rect x="21" y="34" width="6" height="7" rx="3" fill="#111" />
-            <ellipse cx="24" cy="7" rx="7" ry="3" fill="#b69e73" />
-          </g>
-        </svg>
-      `;
-      document.querySelector('.blog-form').appendChild(pen);
+    // Animated bubbles for blog-list background
+    (function createBubbles() {
+      const bubbleBg = document.querySelector('.bubble-bg');
+      const bubbleCount = 16;
+      for (let i = 0; i < bubbleCount; i++) {
+        const b = document.createElement('div');
+        b.className = 'bubble';
+        const size = Math.random() * 48 + 32; // 32px - 80px
+        b.style.width = b.style.height = size + 'px';
+        b.style.left = (Math.random() * 90) + '%';
+        b.style.bottom = (-Math.random() * 40) + 'px';
+        b.style.animationDuration = (8 + Math.random() * 8) + 's';
+        b.style.animationDelay = (-Math.random() * 12) + 's';
+        bubbleBg.appendChild(b);
+      }
     })();
-
-    // Creative: Floating particles on the left for animation
-    function createParticles() {
-  const area = document.querySelector('.blog-list');
-  for (let i = 0; i < 18; i++) {
-    const b = document.createElement('span');
-    b.style.position = 'absolute';
-    b.style.left = (Math.random() * 90 + 2) + '%';
-    b.style.top = (Math.random() * 96 + 2) + '%';
-    b.style.width = b.style.height = (Math.random() * 9 + 4) + 'px';
-    b.style.background = `rgba(237,221,195,${Math.random() * 0.25 + 0.13})`;
-    b.style.borderRadius = '50%';
-    b.style.pointerEvents = 'none';
-    b.style.zIndex = 0;
-    b.style.transition = 'top 8s linear, left 8s linear';
-    area.appendChild(b);
-    setInterval(() => {
-      b.style.top = (Math.random() * 96 + 2) + '%';
-      b.style.left = (Math.random() * 90 + 2) + '%';
-    }, Math.random() * 4000 + 4000);
-  }
-}
-
-    createParticles();
 
     // Initial render
     renderPosts();

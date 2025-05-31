@@ -13,45 +13,70 @@
       padding: 0;
       height: 100%;
       box-sizing: border-box;
-      background: #f7f6f3;
+      background: #e6f7ea; /* Soft aesthetic green */
       scroll-behavior: smooth;
       overscroll-behavior-y: none;
+      font-size: 16px;
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      width: 100%;
+      max-width: 100vw;
     }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
-      background: #f7f6f3;
+      background: rgba(80, 180, 120, 0.12); /* Subtle green, less transparent */
       color: #222;
       min-height: 100vh;
       box-sizing: border-box;
-      /* Floating scroll effect */
       transition: background 0.5s cubic-bezier(.4,2,.6,1);
       will-change: background-position;
+      width: 100%;
+      max-width: 100vw;
+    }
+    .container {
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1rem;
+      box-sizing: border-box;
+      background: #fff;
+      border: 1px solid #ececec;
+      box-shadow: 0 2px 16px #c1a36b11;
     }
     .navbar {
       width: 100%;
-      background: rgba(255,255,255,0.85);
+      background: rgba(255,255,255,0.95);
       backdrop-filter: blur(8px) saturate(1.2);
       color: #222;
       display: flex;
       align-items: center;
-      height: 60px;
+      min-height: 56px;
       box-shadow: 0 4px 24px #c1a36b22;
       border-bottom: 1px solid #ececec;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 18px;
-      padding: 0 32px;
+      font-size: 1rem;
+      padding: 0 1rem;
       position: relative;
       z-index: 100;
+      justify-content: space-between;
+      flex-wrap: wrap;
     }
-    /* Remove profile circle */
-    .navbar .circle { display: none; }
+    .navbar-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #222;
+      margin-right: auto;
+      padding-left: 0.5rem;
+      white-space: nowrap;
+      text-shadow: 0 2px 8px #c1a36b22;
+    }
     .navbar .nav-links {
       display: flex;
-      gap: 32px;
+      gap: 1.5rem;
       margin-left: auto;
       align-items: center;
       height: 100%;
       transition: all 0.3s;
+      flex-wrap: wrap;
     }
     .navbar .nav-links .dropdown {
       position: relative;
@@ -62,9 +87,9 @@
       border: none;
       color: #222;
       font-family: inherit;
-      font-size: 18px;
+      font-size: 1rem;
       cursor: pointer;
-      padding: 0 4px;
+      padding: 0 0.25rem;
       transition: color 0.2s;
       line-height: 1;
       font-weight: 500;
@@ -90,7 +115,7 @@
       padding: 10px 18px;
       text-decoration: none;
       display: block;
-      font-size: 16px;
+      font-size: 1rem;
       font-family: inherit;
       transition: background 0.17s, color 0.17s;
     }
@@ -106,10 +131,10 @@
       color: #222;
       text-decoration: none;
       font-family: inherit;
-      font-size: 18px;
+      font-size: 1rem;
       transition: color 0.2s;
       line-height: 1;
-      padding: 0 4px;
+      padding: 0 0.5rem;
       background: none;
       border: none;
       cursor: pointer;
@@ -123,15 +148,15 @@
       color: #fff;
       border: none;
       border-radius: 8px;
-      padding: 7px 26px;
-      font-size: 17px;
+      padding: 7px 18px;
+      font-size: 1rem;
       font-family: inherit;
       margin-left: 10px;
       cursor: pointer;
       font-weight: 600;
       box-shadow: 0 2px 8px #c1a36b22;
       transition: background 0.2s, color 0.2s;
-      min-width: 100px;
+      min-width: 80px;
       position: relative;
       overflow: hidden;
     }
@@ -148,38 +173,6 @@
       pointer-events: none;
     }
     .navbar .login-btn:hover::after {
-      left: 120%;
-    }
-    .navbar .get-started-btn {
-      background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 32px;
-      font-size: 19px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      cursor: pointer;
-      margin-bottom: 22px;
-      margin-top: 12px;
-      font-weight: 700;
-      box-shadow: 0 2px 8px #c1a36b22;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .navbar .get-started-btn::after {
-      content: "";
-      position: absolute;
-      left: -75%;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 100%);
-      transform: skewX(-20deg);
-      transition: left 0.5s cubic-bezier(.4,2,.6,1);
-      pointer-events: none;
-    }
-    .navbar .get-started-btn:hover::after {
       left: 120%;
     }
     .navbar .hamburger {
@@ -214,25 +207,36 @@
       transform: translateY(-7px) rotate(-45deg);
     }
 
-    /* Wall Magazine Slideshow Styles */
     .wall-magazine-title {
-      font-size: 2.8rem;
-      margin-top: 44px;
+      font-size: 3.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1.2rem;
+      padding: 0 1rem;
+      word-break: break-word;
       font-weight: bold;
-      letter-spacing: 2px;
+      letter-spacing: 0.1rem;
       color: #222;
       text-align: center;
       font-family: 'Playfair Display', serif;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 8px #c1a36b22;
+      text-shadow: 0 0.5vw 1vw rgba(193, 163, 107, 0.3);
+      max-width: 100%;
+      overflow-wrap: break-word;
+    }
+    .underline-title {
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+      text-decoration-thickness: 3px;
+      text-decoration-color: #4caf50;
     }
     .slideshow-container {
-      margin: 32px auto 0 auto;
-      width: 1080px; /* Increased from 850px */
-      height: 600px; /* Increased from 510px */
+      margin: 1.5rem auto 0 auto;
+      width: 100%;
+      max-width: auto;
+      height: auto;
+      aspect-ratio: 16/7;
       background: rgba(255,255,255,0.85);
       backdrop-filter: blur(6px) saturate(1.1);
-      border-radius: 32px;
+      border-radius: 1.5rem;
       box-shadow: 0 6px 32px #c1a36b22;
       display: flex;
       align-items: center;
@@ -249,30 +253,30 @@
     .slideshow-container img {
       width: 100%;
       height: 100%;
-      object-fit: contain; 
-      border-radius: 32px;
-      position: absolute; 
+      object-fit: contain;
+      border-radius: 1.5rem;
+      position: absolute;
       top: 0;
-      /* left: 100%; Default removed, will be handled by classes */
-      z-index: 1; 
+      left: 100%;
+      z-index: 1;
       box-shadow: 0 2px 12px #c1a36b11;
-      transition: left 0.7s ease-in-out; 
+      transition: left 0.7s ease-in-out;
     }
-    .slideshow-container img.active-slide { 
-      left: 0; 
-      z-index: 2; 
+    .slideshow-container img.active-slide {
+      left: 0;
+      z-index: 2;
     }
     .slideshow-container img.prev-slide {
-      left: -100%; 
-      z-index: 1; 
+      left: -100%;
+      z-index: 1;
     }
-    .slideshow-container img.slide-off-screen-right { /* New class */
+    .slideshow-container img.slide-off-screen-right {
       left: 100%;
       z-index: 1;
     }
     .slideshow-dots {
       text-align: center;
-      margin-top: 18px;
+      margin-top: 1rem;
     }
     .slideshow-dot {
       display: inline-block;
@@ -290,146 +294,66 @@
       background: #c1a36b;
       transform: scale(1.2);
     }
-    @media (max-width: 800px) {
-      .slideshow-container {
-        width: 96vw;
-        height: 45vw;
-        max-width: 97vw;
-        max-height: 65vw;
-      }
-    }
-    @media (max-width: 500px) {
-      .wall-magazine-title { font-size: 1.4rem; }
-      .slideshow-container { border-radius: 14px; }
-    }
 
-    /* Layout */
     .main-content {
       background: #fff;
-      min-height: calc(100vh - 60px - 40px);
-      padding-bottom: 36px;
-      border-radius: 0 0 32px 32px;
+      min-height: 300px;
+      padding-bottom: 2rem;
+      border-radius: 0 0 1.5rem 1.5rem;
       width: 100%;
-      max-width: 100vw;
+      max-width: 100%;
+      margin-left: 0;
+      margin-right: 0;
       box-shadow: 0 8px 32px #c1a36b11;
-      margin-top: 32px;
+      margin-top: 2rem;
       animation: fadeIn 1.2s cubic-bezier(.4,2,.6,1);
     }
     .header-row {
       display: flex;
       flex-direction: row;
+      flex-wrap: wrap;
       align-items: flex-start;
       justify-content: space-between;
-      background: linear-gradient(90deg, #b9e7bc 45%, #fff 45.1%);
-      padding: 48px 48px 0 48px;
-      border-radius: 0 0 48px 0;
-      box-sizing: border-box;
-      min-height: 320px;
+      background: none;
+      padding: 0;
+      border-radius: 0;
+      min-height: unset;
+      gap: 2vw;
     }
-    .main-title-block {
-      flex: 1.2;
-      min-width: 240px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-    .main-title {
-      font-size: 54px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 800;
-      margin-bottom: 10px;
-      color: #222;
-      letter-spacing: 1.5px;
-      line-height: 1.1;
-    }
-    .main-desc {
-      font-size: 20px;
-      margin-bottom: 18px;
-      max-width: 440px;
-      color: #444;
-      font-weight: 400;
-      line-height: 1.5;
-    }
-    .get-started-btn {
-      background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      padding: 11px 32px;
-      font-size: 19px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      cursor: pointer;
-      margin-bottom: 22px;
-      margin-top: 12px;
-      font-weight: 700;
-      box-shadow: 0 2px 8px #c1a36b22;
-      transition: background 0.2s, color 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
-    }
-    .get-started-btn::after {
-      content: "";
-      position: absolute;
-      left: -75%;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 100%);
-      transform: skewX(-20deg);
-      transition: left 0.5s cubic-bezier(.4,2,.6,1);
-      pointer-events: none;
-    }
-    .get-started-btn:hover::after {
-      left: 120%;
-    }
-    .image-box {
-      background: #fff;
-      border-radius: 32px;
-      box-shadow: 0 4px 24px 0 rgba(193,163,107,0.10);
-      width: 340px;
-      height: 260px;
-      margin-left: 34px;
-      margin-right: 10px;
-      margin-top: 6px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      border: 1.5px solid #ececec;
-    }
-    .image-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      border-radius: 32px;
-    }
-
-    /* Events section */
     .section-label {
-      font-size: 22px;
+      font-size: 1.2rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 0.7rem;
+      margin: 2rem 0 1rem 1rem;
       color: #fff;
-      background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%);
+      /* background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%); */
+      background: linear-gradient(90deg, #a8e063 0%, #56ab2f 100%);
+      /* Soft green gradient for cozy, pleasant look */
       display: inline-block;
-      padding: 10px 32px;
-      border-radius: 12px;
       font-weight: 700;
-      margin: 44px 0 18px 48px;
-      box-shadow: 0 2px 8px #c1a36b22;
-      letter-spacing: 1px;
+      letter-spacing: 0.1vw;
+      box-shadow: 0 0.5vw 2vw #c1a36b22;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+    .center-label {
+      display: block;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
     }
     .events-row {
       display: flex;
-      flex-direction: row;
-      gap: 28px;
-      margin-left: 48px;
-      margin-bottom: 10px;
-      margin-right: 48px;
       flex-wrap: wrap;
+      gap: 1rem;
+      margin-left: 1rem;
+      margin-right: 1rem;
+      box-sizing: border-box;
+      max-width: 100%;
     }
     .event-card {
       background: #fff;
-      border-radius: 18px;
+      border-radius: 1rem;
       box-shadow: 0 4px 16px 0 rgba(193,163,107,0.10);
       width: 140px;
       height: 180px;
@@ -440,7 +364,7 @@
       flex-direction: column;
       text-align: center;
       padding: 0;
-      margin-bottom: 18px;
+      margin-bottom: 1rem;
       position: relative;
       cursor: pointer;
       transition: box-shadow 0.2s, transform 0.2s;
@@ -448,21 +372,17 @@
       animation: fadeIn 1.2s cubic-bezier(.4,2,.6,1);
       opacity: 0;
       animation-fill-mode: forwards;
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
     }
-    .events-row .event-card:nth-child(1) { animation-delay: 0.2s; }
-    .events-row .event-card:nth-child(2) { animation-delay: 0.3s; }
-    .events-row .event-card:nth-child(3) { animation-delay: 0.4s; }
-    .events-row .event-card:nth-child(4) { animation-delay: 0.5s; }
-    .events-row .event-card:nth-child(5) { animation-delay: 0.6s; }
-    .events-row .event-card:nth-child(6) { animation-delay: 0.7s; }
-    .events-row .event-card:nth-child(7) { animation-delay: 0.8s; }
     .event-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
       pointer-events: none;
-      border-radius: 18px;
+      border-radius: inherit;
       transition: transform 0.2s;
     }
     .event-card:hover {
@@ -508,158 +428,75 @@
       100% { transform: scale(1); opacity:1; }
     }
 
-    @media (max-width: 1000px) {
-      .header-row {
-        flex-direction: column;
-        padding: 24px 4vw 0 4vw;
-        min-height: unset;
-        align-items: stretch;
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .container {
+        max-width: 100vw;
+        padding: 0 0.5rem;
       }
-      .main-title-block {
-        margin-bottom: 24px;
-        align-items: flex-start;
+      .slideshow-container {
+        max-width: 100vw;
       }
-      .image-box {
-        margin: 0 auto 0 auto;
-        width: 80vw;
-        max-width: 340px;
-        height: 38vw;
-        max-height: 260px;
-      }
-      .section-label {
-        margin: 34px 0 12px 4vw;
-      }
-      .events-row {
-        margin-left: 4vw;
-        margin-right: 4vw;
-        gap: 12px;
-      }
+    }
+    @media (max-width: 900px) {
+      .wall-magazine-title { font-size: 1.7rem; }
+      .slideshow-container { aspect-ratio: 16/9; }
+      .event-card { width: 120px; height: 140px; }
     }
     @media (max-width: 650px) {
       .navbar {
-        font-size: 15px;
-        padding: 0 8px;
+        font-size: 0.9rem;
+        padding: 0 0.5rem;
         height: auto;
-        flex-wrap: wrap;
-        background: rgba(255,255,255,0.95);
-        backdrop-filter: blur(10px);
       }
-      .navbar .hamburger {
-        display: flex;
+      .navbar-title {
+        font-size: 1.1rem;
+        padding-left: 0.5rem;
       }
-      .navbar .nav-links {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 0;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100vw;
-        background: rgba(255,255,255,0.97);
-        box-shadow: 0 8px 32px #c1a36b33;
-        padding: 0;
-        display: none;
-        backdrop-filter: blur(10px);
-      }
-      .navbar .nav-links.open {
-        display: flex;
-      }
-      .navbar .nav-links a,
-      .navbar .nav-links .dropdown,
-      .navbar .login-btn {
-        width: 100%;
-        text-align: left;
-        padding: 14px 18px;
-        border-bottom: 1px solid #ececec;
-        margin: 0;
-        font-size: 17px;
-      }
-      .navbar .nav-links .dropdown-content {
-        position: static;
-        box-shadow: none;
-        border-radius: 0;
-        min-width: unset;
-        background: #f7f6f3;
-      }
-      .navbar .login-btn {
-        margin: 0;
-        border-radius: 0 0 8px 8px;
-        background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%);
-        color: #fff;
-        font-weight: 700;
-        box-shadow: none;
-      }
-      .main-title {
-        font-size: 22px;
-      }
-      .main-desc {
-        font-size: 13px;
-      }
-      .header-row {
-        padding: 12px 2vw 0 2vw;
-      }
-      .section-label {
-        font-size: 13px;
-        padding: 6px 10px;
-        margin-left: 2vw;
-      }
-      .event-card {
-        width: 70px;
-        height: 80px;
-      }
-      .events-row {
-        gap: 5px;
-      }
-      .image-box {
-        width: 90vw;
-        max-width: 180px;
-        height: 24vw;
-        max-height: 120px;
-      }
-      .slideshow-container {
-        width: 98vw;
-        height: 48vw;
-        min-width: 0;
-        min-height: 0;
-        border-radius: 10px;
+      .nav-links {
+        gap: 0.5rem;
       }
       .wall-magazine-title {
-        font-size: 1.1rem;
-        margin-top: 18px;
+        font-size: 2rem;
+        margin-top: 1rem;
+      }
+      .slideshow-container {
+        aspect-ratio: 9/16;
+        max-width: 100vw;
+        border-radius: 0.7rem;
       }
       .main-content {
-        margin-top: 12px;
-        border-radius: 0 0 16px 16px;
+        margin-top: 1rem;
+        border-radius: 0 0 1rem 1rem;
         box-shadow: 0 2px 8px #c1a36b11;
-        padding-bottom: 16px;
+        padding-bottom: 1rem;
+      }
+      .section-label {
+        font-size: 1rem;
+        padding: 0.5rem 1rem;
+        margin-left: 0.5rem;
+      }
+      .events-row {
+        gap: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      .event-card {
+        width: 45vw;
+        height: 30vw;
+        min-width: 100px;
+        max-width: 100%;
+        margin-bottom: 0.5rem;
       }
     }
     @media (max-width: 400px) {
       .navbar {
-        font-size: 12px;
-        padding: 0 2px;
+        font-size: 0.8rem;
+        padding: 0 0.2rem;
       }
-      .main-title {
-        font-size: 15px;
-      }
-      .main-desc {
-        font-size: 10px;
-      }
-      .section-label {
-        font-size: 10px;
-        padding: 4px 6px;
-      }
-      .event-card {
-        width: 48px;
-        height: 54px;
-      }
-      .image-box {
-        max-width: 90px;
-        max-height: 60px;
-      }
-      .slideshow-container {
-        border-radius: 6px;
-      }
+      .wall-magazine-title { font-size: 1rem; }
+      .event-card { width: 90vw; height: 40vw; }
+      .slideshow-container { border-radius: 0.5rem; }
     }
     /* Floating blurred background shape */
     .bg-shape {
@@ -689,14 +526,215 @@
       100% { transform: translateY(40px) scale(1.08);}
     }
     /* End */
+    .latest-events-row {
+      justify-content: center;
+      gap: 2.5rem;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 2.5rem;
+    }
+    .large-event-card {
+      width: 320px;
+      min-width: 240px;
+      max-width: 95vw;
+      height: 370px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.1rem 1rem 1.2rem 1rem;
+      box-sizing: border-box;
+      background: #fff;
+      border-radius: 1.2rem;
+      box-shadow: 0 4px 16px 0 rgba(193,163,107,0.10);
+      border: 1.5px solid #ececec;
+      margin-bottom: 0;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .large-event-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 0.8rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 8px #c1a36b22;
+    }
+    .large-event-card .event-info {
+      width: 100%;
+      text-align: center;
+      padding: 0.2rem 0.2rem 0 0.2rem;
+    }
+    .large-event-card .event-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+      color: #2e5d3b;
+    }
+    .large-event-card .event-desc {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.4;
+      min-height: 2.2em;
+    }
+    @media (max-width: 900px) {
+      .large-event-card {
+        width: 90vw;
+        height: auto;
+        min-width: 0;
+        padding: 0.7rem 0.5rem 1rem 0.5rem;
+      }
+      .large-event-card img {
+        height: 36vw;
+        min-height: 120px;
+        max-height: 220px;
+      }
+    }
+    @media (max-width: 650px) {
+      .latest-events-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .large-event-card {
+        width: 98vw;
+        max-width: 98vw;
+        min-width: 0;
+        padding: 0.5rem 0.2rem 0.8rem 0.2rem;
+      }
+      .large-event-card img {
+        height: 44vw;
+        min-height: 90px;
+        max-height: 180px;
+      }
+    }
+    .past-events-row {
+      justify-content: center;
+      gap: 2.5rem;
+      margin-left: 0;
+      margin-right: 0;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 900px) {
+      .past-events-row {
+        gap: 1.5rem;
+      }
+      .past-events-row .large-event-card {
+        width: 90vw;
+        height: auto;
+        min-width: 0;
+        padding: 0.7rem 0.5rem 1rem 0.5rem;
+      }
+      .past-events-row .large-event-card img {
+        height: 36vw;
+        min-height: 120px;
+        max-height: 220px;
+      }
+    }
+    @media (max-width: 650px) {
+      .past-events-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.2rem;
+      }
+      .past-events-row .large-event-card {
+        width: 98vw;
+        max-width: 98vw;
+        min-width: 0;
+        padding: 0.5rem 0.2rem 0.8rem 0.2rem;
+      }
+      .past-events-row .large-event-card img {
+        height: 44vw;
+        min-height: 90px;
+        max-height: 180px;
+      }
+    }
+    /* Mobile-only menu button and dropdown */
+    .mobile-menu-btn {
+      display: none;
+      position: fixed;
+      bottom: 22px;
+      right: 22px;
+      z-index: 9999;
+      background: linear-gradient(90deg, #a8e063 0%, #56ab2f 100%);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 54px;
+      height: 54px;
+      box-shadow: 0 4px 16px #2222;
+      font-size: 2.1rem;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+    .mobile-menu-btn:active {
+      background: linear-gradient(90deg, #56ab2f 0%, #a8e063 100%);
+      box-shadow: 0 2px 8px #2224;
+    }
+    .mobile-menu-dropdown {
+      display: none;
+      position: fixed;
+      bottom: 84px;
+      right: 22px;
+      z-index: 9999;
+      background: #fff;
+      border-radius: 1.1rem;
+      box-shadow: 0 6px 32px #2223;
+      padding: 0.7rem 0.5rem;
+      min-width: 170px;
+      animation: fadeInMenu 0.25s;
+    }
+    .mobile-menu-dropdown.open {
+      display: block;
+    }
+    .mobile-menu-dropdown a {
+      display: block;
+      padding: 0.85rem 1.1rem;
+      color: #222;
+      font-size: 1.08rem;
+      text-decoration: none;
+      border-radius: 0.7rem;
+      margin-bottom: 0.2rem;
+      font-weight: 600;
+      background: none;
+      transition: background 0.16s, color 0.16s;
+    }
+    .mobile-menu-dropdown a:last-child {
+      margin-bottom: 0;
+    }
+    .mobile-menu-dropdown a:hover {
+      background: #e6f7ea;
+      color: #388e3c;
+    }
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(20px);}
+      to { opacity: 1; transform: none;}
+    }
+    /* Show only on phones */
+    @media (max-width: 650px) {
+      .mobile-menu-btn {
+        display: flex;
+      }
+      .mobile-menu-dropdown {
+        display: none;
+      }
+      .mobile-menu-dropdown.open {
+        display: block;
+      }
+    }
+    @media (min-width: 651px) {
+      .mobile-menu-btn,
+      .mobile-menu-dropdown {
+        display: none !important;
+      }
+    }
   </style>
 </head>
 <body>
-  <!-- Floating blurred background shape -->
   <div class="bg-shape"></div>
-  <!-- Navbar -->
   <div class="navbar">
-    <!-- Hamburger for mobile -->
+    <div class="navbar-title">Ramgarh Engineering College</div>
     <button class="hamburger" id="navHamburger" aria-label="Open navigation">
       <span></span>
       <span></span>
@@ -719,65 +757,126 @@
       <a href="login.html" class="login-btn">Login</a>
     </div>
   </div>
-
-  <!-- Wall Magazine Slideshow -->
-  <div class="wall-magazine-title">Digital Wall Magazine</div>
-  <div class="slideshow-container" id="slideshow"></div>
-  <div class="slideshow-dots" id="slideshowDots"></div>
-
-  <div class="main-content">
-    <!-- Header Row -->
-    <div class="header-row">
-      <div class="main-title-block">
-        <div class="main-title">Digital Wall<br>Magazine</div>
-        <div class="main-desc">
-          A Web-Based Platform for Student Blogs,<br>
-          Artwork, Tech Articles and<br>
-          Departmental Notice
+  <div class="container">
+    <div class="wall-magazine-title green-title-bg underline-title">Digital Wall Magazine</div>
+    <div class="slideshow-container" id="slideshow"></div>
+    <div class="slideshow-dots" id="slideshowDots"></div>
+    <div class="main-content">
+      <div class="header-row"></div>
+      <div class="section-label center-label">Latest Events</div>
+      <div class="events-row latest-events-row">
+        <div class="event-card large-event-card">
+          <img src="assets/images/latest_events/image1.jpeg" alt="Hackmanthan poster">
+          <div class="event-info">
+            <div class="event-title">REC PitchPerfect 1.0</div>
+            <div class="event-desc">A school level idea pitching competition for innovative and young minds.</div>
+          </div>
         </div>
-        <button class="get-started-btn"><a href="login.html">Get Started</a></button>
+        <div class="event-card large-event-card">
+          <img src="assets/images/latest_events/image2.jpeg" alt="Design Thinking Workshop poster">
+          <div class="event-info">
+            <div class="event-title">HackManthan 1.0</div>
+            <div class="event-desc">Let's dive into the first 24-hr Manthan of REC.</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/latest_events/image3.jpeg" alt="Hindi article news clipping">
+          <div class="event-info">
+            <div class="event-title">National Science Day</div>
+            <div class="event-desc">Exploring science, igniting minds — celebrating innovation, discovery, and the power of knowledge together today.</div>
+          </div>
+        </div>
       </div>
-      <div class="image-box">
-        <img src="assets/images/logo.jpeg" alt="Header Illustration">
+      <div class="section-label center-label">Past Events</div>
+      <div class="events-row past-events-row">
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image4.jpeg" alt="Event 1">
+          <div class="event-info">
+            <div class="event-title">Industry 4.0</div>
+            <div class="event-desc">A webinar on real-world trending technologies by Ardent Computech Pvt. Ltd.</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image5.jpeg" alt="Event 2">
+          <div class="event-info">
+            <div class="event-title">Webinar on AI/ML</div>
+            <div class="event-desc">Innovative development of ML using Python by Co-Founder of NV Enterprises, Ranchi</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image6.jpeg" alt="Event 3">
+          <div class="event-info">
+            <div class="event-title">Women's Day</div>
+            <div class="event-desc">Honoring strength, celebrating achievements — empowering every woman to lead, inspire, and shape a better world.</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image7.jpeg" alt="Event 4">
+          <div class="event-info">
+            <div class="event-title">Ambedkar Jayanti</div>
+            <div class="event-desc">Remembering Dr. Ambedkar — champion of equality, justice, and knowledge; inspiring a nation toward dignity and progress.</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image8.jpeg" alt="Event 5">
+          <div class="event-info">
+            <div class="event-title">SparkTank 1.0</div>
+            <div class="event-desc">Cultivating young minds for a smarter and brighter future of India.
+              <p>*FOR SCHOOL AND COLLEGE STUDENTS*</p>
+            </div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image9.jpeg" alt="Event 6">
+          <div class="event-info">
+            <div class="event-title">Guest Lecture on Design, Innovative and Critical Thinking</div>
+            <div class="event-desc">Empowering minds and future leaders with creative vision.</div>
+          </div>
+        </div>
+        <div class="event-card large-event-card">
+          <img src="assets/images/past_events/image10.jpeg" alt="Event 7">
+          <div class="event-info">
+            <div class="event-title">IoT-AI-Web-Design Workshop 2025</div>
+            <div class="event-desc">IoT, AI, and Web Design converge — building smart futures through innovation, by Government of Jharkhand.</div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!-- Latest Events -->
-    <div class="section-label">Latest Events</div>
-    <div class="events-row">
-      <div class="event-card"><img src="assets/images/image1.jpeg" alt="Hackmanthan poster"></div>
-      <div class="event-card"><img src="assets/images/image2.jpeg" alt="Design Thinking Workshop poster"></div>
-      <div class="event-card"><img src="assets/images/image3.jpeg" alt="Hindi article news clipping"></div>
-    </div>
-    <!-- Past Events -->
-    <div class="section-label">Past Events</div>
-    <div class="events-row">
-      <div class="event-card"><img src="assets/images/image4.jpeg" alt="Event 1"></div>
-      <div class="event-card"><img src="assets/images/image5.jpeg" alt="Event 2"></div>
-      <div class="event-card"><img src="assets/images/image6.jpeg" alt="Event 3"></div>
-      <div class="event-card"><img src="assets/images/image7.jpeg" alt="Event 4"></div>
-      <div class="event-card"><img src="assets/images/image8.jpeg" alt="Event 5"></div>
-      <div class="event-card"><img src="assets/images/image9.jpeg" alt="Event 6"></div>
-      <div class="event-card"><img src="assets/images/image10.jpeg" alt="Event 7"></div>
     </div>
   </div>
-
-  <!-- Modal for image zoom -->
   <div class="modal-overlay" id="modalOverlay">
     <img src="" alt="Zoomed Poster" class="modal-zoom-img" id="modalZoomImg">
+  </div>
+  <!-- Mobile-only menu button and dropdown -->
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+    <span style="display:block;width:28px;height:28px;">
+      <svg width="28" height="28" viewBox="0 0 28 28">
+        <rect y="5" width="28" height="3.5" rx="1.5" fill="#fff"/>
+        <rect y="12" width="28" height="3.5" rx="1.5" fill="#fff"/>
+        <rect y="19" width="28" height="3.5" rx="1.5" fill="#fff"/>
+      </svg>
+    </span>
+  </button>
+  <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+    <a href="about.html">About Us</a>
+    <a href="blog.html">Blog</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="#" id="mobileNoticeBtn">Notices</a>
+    <div id="mobileNoticeDropdown" style="display:none; margin-left:0.7rem;">
+      <a href="csenotice.html">CSE</a>
+      <a href="ecenotice.html">ECE</a>
+      <a href="eenotice.html">EE</a>
+      <a href="menotice.html">ME</a>
+      <a href="cenotice.html">CE</a>
+    </div>
+    <a href="login.html">Login</a>
   </div>
   <script>
     // Wall Magazine Slideshow Script
     const images = [
-      "assets/images/image1.jpeg",
-      "assets/images/image2.jpeg",
-      "assets/images/image3.jpeg",
-      "assets/images/image4.jpeg",
-      "assets/images/image5.jpeg",
-      "assets/images/image6.jpeg",
-      "assets/images/image7.jpeg",
-      "assets/images/image8.jpeg",
-      "assets/images/image9.jpeg",
-      "assets/images/image10.jpeg"
+      "assets/images/news1.jpeg",
+      "assets/images/news2.jpeg",
+      "assets/images/news3.jpeg",
+      "assets/images/news4.jpeg"
     ];
 
     const slideshow = document.getElementById('slideshow');
@@ -941,6 +1040,48 @@
         bgShape.style.transform = `translateY(${y * 0.12}px) scale(1.08)`;
       }
     });
+
+    // Mobile menu button logic
+    (function() {
+      const btn = document.getElementById('mobileMenuBtn');
+      const menu = document.getElementById('mobileMenuDropdown');
+      const noticeBtn = document.getElementById('mobileNoticeBtn');
+      const noticeDropdown = document.getElementById('mobileNoticeDropdown');
+
+      let menuOpen = false;
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        menuOpen = !menuOpen;
+        menu.classList.toggle('open', menuOpen);
+        // Hide notice dropdown when menu closes
+        if (!menuOpen) noticeDropdown.style.display = 'none';
+      });
+
+      // Toggle notice dropdown
+      noticeBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        noticeDropdown.style.display = noticeDropdown.style.display === 'block' ? 'none' : 'block';
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (window.innerWidth > 650) return;
+        if (!menu.contains(e.target) && e.target !== btn) {
+          menu.classList.remove('open');
+          menuOpen = false;
+          noticeDropdown.style.display = 'none';
+        }
+      });
+
+      // Optional: close menu on navigation
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          menu.classList.remove('open');
+          menuOpen = false;
+          noticeDropdown.style.display = 'none';
+        });
+      });
+    })();
   </script>
 </body>
 </html>

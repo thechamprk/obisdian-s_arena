@@ -7,6 +7,8 @@
   <!-- Google Fonts Montserrat and Playfair Display -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS for header/navbar -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     html, body {
       margin: 0;
@@ -42,169 +44,112 @@
       border: 1px solid #ececec;
       box-shadow: 0 2px 16px #c1a36b11;
     }
-    .navbar {
-      width: 100%;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px) saturate(1.2);
-      color: #222;
-      display: flex;
-      align-items: center;
-      min-height: 56px;
-      box-shadow: 0 4px 24px #c1a36b22;
-      border-bottom: 1px solid #ececec;
-      font-size: 1rem;
-      padding: 0 1rem;
-      position: relative;
-      z-index: 100;
-      justify-content: space-between;
-      flex-wrap: wrap;
-    }
-    .navbar-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #222;
-      margin-right: auto;
-      padding-left: 0.5rem;
-      white-space: nowrap;
-      text-shadow: 0 2px 8px #c1a36b22;
-    }
-    .navbar .nav-links {
-      display: flex;
-      gap: 1.5rem;
-      margin-left: auto;
-      align-items: center;
-      height: 100%;
-      transition: all 0.3s;
-      flex-wrap: wrap;
-    }
-    .navbar .nav-links .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .navbar .nav-links .dropbtn {
-      background: none;
-      border: none;
-      color: #222;
-      font-family: inherit;
-      font-size: 1rem;
-      cursor: pointer;
-      padding: 0 0.25rem;
-      transition: color 0.2s;
-      line-height: 1;
-      font-weight: 500;
-    }
-    .navbar .nav-links .dropbtn:after {
-      content: " ▼";
-      font-size: 0.8em;
-    }
-    .navbar .nav-links .dropdown-content {
-      display: none;
-      position: absolute;
+    /* Bootstrap Product Header Style Overrides */
+    .navbar-product {
       background: #fff;
-      min-width: 120px;
-      box-shadow: 0px 8px 24px 0px rgba(0,0,0,0.10);
-      border-radius: 10px;
-      z-index: 1;
-      left: 0;
-      top: 35px;
-      overflow: hidden;
+      border-bottom: 1px solid #ececec;
+      box-shadow: 0 2px 12px #c1a36b11;
+      padding-top: 0.7rem;
+      padding-bottom: 0.7rem;
     }
-    .navbar .nav-links .dropdown-content a {
-      color: #222;
-      padding: 10px 18px;
-      text-decoration: none;
+    .navbar-product .navbar-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; /* Increased by 4px from 1.25rem */
+      font-weight: bold;
+      color: #222 !important;
+      letter-spacing: 0.02em;
+      text-shadow: 0 2px 8px #c1a36b22;
+      margin: 0 !important;
       display: block;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: background 0.17s, color 0.17s;
+      text-align: left;
+      width: auto;
     }
-    .navbar .nav-links .dropdown-content a:hover {
-      background: #f3e9d2;
-      color: #000;
+    @media (min-width: 992px) {
+      .navbar-product .navbar-brand {
+        position: static;
+        left: unset;
+        transform: none;
+        margin-left: 0 !important;
+        text-align: left;
+      }
+      .navbar-product .navbar-nav {
+        width: auto;
+        justify-content: flex-end;
+        margin-right: 2.5rem; /* Move buttons more right */
+      }
+      .navbar-product .container-fluid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
-    .navbar .nav-links .dropdown:hover .dropdown-content,
-    .navbar .nav-links .dropdown:focus-within .dropdown-content {
-      display: block;
+    @media (max-width: 991.98px) {
+      .navbar-product .navbar-brand {
+        margin: 0 auto !important;
+        display: block;
+        text-align: center;
+        width: 100%;
+      }
+      .navbar-product .navbar-nav {
+        width: 100%;
+        justify-content: center;
+      }
     }
-    .navbar .nav-links a, .navbar .nav-links button {
-      color: #222;
-      text-decoration: none;
-      font-family: inherit;
-      font-size: 1rem;
-      transition: color 0.2s;
-      line-height: 1;
-      padding: 0 0.5rem;
-      background: none;
-      border: none;
-      cursor: pointer;
+    .navbar-product .navbar-nav {
+      width: 100%;
+      justify-content: center;
+    }
+    .navbar-product .nav-link {
+      color: #222 !important;
       font-weight: 500;
+      font-size: 1.08rem;
+      margin-right: 0.5rem;
+      transition: color 0.18s;
     }
-    .navbar .nav-links a:hover, .navbar .nav-links button:hover {
-      color: #c1a36b;
+    .navbar-product .nav-link:hover, .navbar-product .nav-link.active {
+      color: #56ab2f !important;
     }
-    .navbar .login-btn {
+    .navbar-product .btn-login {
       background: linear-gradient(90deg, #c1a36b 60%, #b9e7bc 100%);
-      color: #fff;
+      color: #fff !important;
       border: none;
       border-radius: 8px;
       padding: 7px 18px;
       font-size: 1rem;
-      font-family: inherit;
-      margin-left: 10px;
-      cursor: pointer;
       font-weight: 600;
+      margin-left: 10px;
       box-shadow: 0 2px 8px #c1a36b22;
       transition: background 0.2s, color 0.2s;
       min-width: 80px;
       position: relative;
       overflow: hidden;
     }
-    .navbar .login-btn::after {
-      content: "";
-      position: absolute;
-      left: -75%;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.7) 100%);
-      transform: skewX(-20deg);
-      transition: left 0.5s cubic-bezier(.4,2,.6,1);
-      pointer-events: none;
+    .navbar-product .btn-login:hover {
+      background: linear-gradient(90deg, #b9e7bc 0%, #c1a36b 100%);
+      color: #222 !important;
     }
-    .navbar .login-btn:hover::after {
-      left: 120%;
+    .navbar-product .dropdown-menu {
+      border-radius: 0.7rem;
+      min-width: 140px;
+      box-shadow: 0 4px 24px #c1a36b22;
+      border: 1px solid #ececec;
     }
-    .navbar .hamburger {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 38px;
-      height: 38px;
-      margin-left: 8px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      z-index: 101;
+    .navbar-product .dropdown-item:active, .navbar-product .dropdown-item:focus, .navbar-product .dropdown-item:hover {
+      background: #e6f7ea;
+      color: #388e3c;
     }
-    .navbar .hamburger span {
-      display: block;
-      width: 24px;
-      height: 3px;
-      background: #c1a36b;
-      margin: 4px 0;
-      border-radius: 2px;
-      transition: all 0.3s;
-    }
-    .navbar .hamburger.open span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-    .navbar .hamburger.open span:nth-child(2) {
-      opacity: 0;
-    }
-    .navbar .hamburger.open span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
+    @media (max-width: 991.98px) {
+      .navbar-product .navbar-collapse {
+        background: #fff;
+        border-radius: 0 0 1rem 1rem;
+        box-shadow: 0 2px 8px #c1a36b11;
+        margin-top: 0.5rem;
+        padding: 0.5rem 0.7rem;
+      }
+      .navbar-product .nav-link {
+        margin-right: 0;
+        padding: 0.7rem 0.5rem;
+      }
     }
 
     .wall-magazine-title {
@@ -732,31 +677,46 @@
   </style>
 </head>
 <body>
-  <div class="bg-shape"></div>
-  <div class="navbar">
-    <div class="navbar-title">Ramgarh Engineering College</div>
-    <button class="hamburger" id="navHamburger" aria-label="Open navigation">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-    <div class="nav-links" id="navLinks">
-      <a href="blog.html">Blogs</a>
-      <a href="about.html">About Us</a>
-      <a href="gallery.html">Gallery</a>
-      <div class="dropdown">
-        <button class="dropbtn">Notice</button>
-        <div class="dropdown-content">
-          <a href="csenotice.html">CSE</a>
-          <a href="ecenotice.html">ECE</a>
-          <a href="eenotice.html">EE</a>
-          <a href="menotice.html">ME</a>
-          <a href="cenotice.html">CE</a>
+  <!-- Bootstrap Product Header -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-product position-relative">
+      <div class="container-fluid position-relative">
+        <a class="navbar-brand" href="index.html">Ramgarh Engineering College</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarProduct" aria-controls="navbarProduct" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarProduct">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="blog.html">Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="gallery.html">Gallery</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarNoticeDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Notices
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarNoticeDropdown">
+                <li><a class="dropdown-item" href="csenotice.html">CSE</a></li>
+                <li><a class="dropdown-item" href="ecenotice.html">ECE</a></li>
+                <li><a class="dropdown-item" href="eenotice.html">EE</a></li>
+                <li><a class="dropdown-item" href="menotice.html">ME</a></li>
+                <li><a class="dropdown-item" href="cenotice.html">CE</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="btn btn-login ms-lg-2" href="login.html">Login</a>
+            </li>
+          </ul>
         </div>
       </div>
-      <a href="login.html" class="login-btn">Login</a>
-    </div>
-  </div>
+    </nav>
+  </header>
+  <div class="bg-shape"></div>
   <div class="container">
     <div class="wall-magazine-title green-title-bg underline-title">Digital Wall Magazine</div>
     <div class="slideshow-container" id="slideshow"></div>
@@ -846,30 +806,7 @@
   <div class="modal-overlay" id="modalOverlay">
     <img src="" alt="Zoomed Poster" class="modal-zoom-img" id="modalZoomImg">
   </div>
-  <!-- Mobile-only menu button and dropdown -->
-  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
-    <span style="display:block;width:28px;height:28px;">
-      <svg width="28" height="28" viewBox="0 0 28 28">
-        <rect y="5" width="28" height="3.5" rx="1.5" fill="#fff"/>
-        <rect y="12" width="28" height="3.5" rx="1.5" fill="#fff"/>
-        <rect y="19" width="28" height="3.5" rx="1.5" fill="#fff"/>
-      </svg>
-    </span>
-  </button>
-  <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
-    <a href="about.html">About Us</a>
-    <a href="blog.html">Blog</a>
-    <a href="gallery.html">Gallery</a>
-    <a href="#" id="mobileNoticeBtn">Notices</a>
-    <div id="mobileNoticeDropdown" style="display:none; margin-left:0.7rem;">
-      <a href="csenotice.html">CSE</a>
-      <a href="ecenotice.html">ECE</a>
-      <a href="eenotice.html">EE</a>
-      <a href="menotice.html">ME</a>
-      <a href="cenotice.html">CE</a>
-    </div>
-    <a href="login.html">Login</a>
-  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     // Wall Magazine Slideshow Script
     const images = [

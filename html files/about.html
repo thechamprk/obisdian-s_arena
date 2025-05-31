@@ -8,13 +8,6 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: #e8dbc2;
-      color: #111;
-      margin: 0;
-      padding: 0;
-    }
     .navbar {
       width: 100%;
       background: #000;
@@ -64,19 +57,72 @@
       background: #b9e7bc;
       color: #000;
     }
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #ffe4ec; /* Cherry blossom pink */
+      color: #111;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-center-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 56px; /* Height of navbar to avoid overlap */
+    }
+    .about-wall-container {
+      display: flex;
+      justify-content: center;
+      margin: 60px 0 0 0;
+      width: 100%;
+      min-height: 80px;
+      position: relative;
+    }
+    .about-us-wall {
+      background: #fff;
+      padding: 24px 48px 24px 56px;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px 0 rgba(255, 224, 102, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      min-height: 80px;
+      margin: 0 auto;
+      position: static;
+    }
+    .about-us-title {
+      font-size: 52px;
+      font-family: 'Playfair Display', serif;
+      color: #333;
+      margin: 0;
+      letter-spacing: 1px;
+      text-align: center;
+      background: none;
+      box-shadow: none;
+      padding: 0;
+    }
     .about-section {
       max-width: 900px;
-      margin: 60px auto 0 auto;
+      margin: 32px auto 0 auto; /* Center horizontally, space below About Us */
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 6px 20px 0 rgba(0,0,0,0.07);
       padding: 40px 40px 32px 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
     .about-title {
-      font-size: 48px;
+      font-size: 32px;
       font-family: 'Playfair Display', serif;
-      margin: 0 0 18px 0;
+      margin: 0 0 12px 0;
       color: #333;
+      text-align: center;
     }
     .about-desc {
       font-size: 22px;
@@ -85,49 +131,289 @@
       margin-top: 0;
       margin-bottom: 24px;
       line-height: 1.6;
+      text-align: center;
     }
     .about-credits {
       font-size: 17px;
       color: #555;
       margin-top: 32px;
       font-style: italic;
+      text-align: center;
+    }
+    .team-section {
+      display: none !important;
+    }
+    @media (max-width: 900px) {
+      .team-cards {
+        gap: 18px;
+      }
+      .team-card {
+        width: 160px;
+        padding: 18px 10px 14px 10px;
+      }
+      .team-title {
+        font-size: 22px;
+      }
     }
     @media (max-width: 750px) {
-      .about-section {
-        padding: 20px 10px 12px 10px;
+      .about-wall-container {
+        margin: 20px auto 0 auto;
       }
-      .about-title {
+      .about-us-wall {
+        padding: 12px 18px;
+        min-width: 100px;
+        min-height: 40px;
+      }
+      .about-us-title {
         font-size: 30px;
       }
-      .about-desc {
-        font-size: 16px;
+    }
+    @media (max-width: 600px) {
+      .team-cards {
+        flex-direction: column;
+        align-items: center;
+      }
+      .team-card {
+        width: 90vw;
+        max-width: 320px;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Sprinkle Canvas -->
+  <canvas id="sprinkle-canvas" style="position:fixed;left:0;top:0;width:100vw;height:100vh;pointer-events:none;z-index:999;"></canvas>
   <!-- Navbar -->
   <div class="navbar">
     <div class="circle"></div>
     <div class="nav-links">
-      <a href="index.html">Blogs</a>
+      <a href="blog.html">Blogs</a>
       <a href="about.html">About Us</a>
       <a href="gallery.html">Gallery</a>
       <a href="#">Notice</a>
       <button class="login-btn">Login</button>
     </div>
   </div>
-  <section class="about-section">
-    <div class="about-title">About Digital Wall Magazine</div>
-    <div class="about-desc">
-      Digital Wall Magazine is a vibrant web platform created for students to showcase their creativity, share technical articles, and stay updated with college news and notices. Our mission is to empower students and faculty through technology, bringing together writers, artists, and innovators in one collaborative space.
-      <br><br>
-      On this platform, you’ll find blog posts, artwork, academic resources, and official announcements—all curated for and by our college community. Join us in building a digital legacy!
+  <div class="main-center-container">
+    <!-- About Us Centered -->
+    <div class="about-wall-container">
+      <div class="about-us-wall">
+        <div class="about-us-title">About Us</div>
+      </div>
     </div>
+
     <div class="about-credits">
-      Powered by students of Ramgarh Engineering College.<br>
-      For suggestions, mail us at web-admin@rec.ac.in.
+    <section class="about-section">
+      <div class="about-title">About Digital Wall Magazine</div>
+      <!-- Animated Heart Start -->
+      <div style="display: flex; justify-content: center; margin: 32px 0 24px 0;">
+        <svg id="animated-heart" width="48" height="48" viewBox="0 0 64 64" style="max-width:48px;max-height:48px;">
+          <g>
+            <path
+              d="M32 58s-18-13.5-18-26.5S22 8 32 20c10-12 18 0.5 18 11.5S32 58 32 58z"
+              fill="#e255a3">
+              <animateTransform attributeName="transform" type="scale"
+                values="1;1.25;1" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite" additive="sum"/>
+              <animate attributeName="fill"
+                values="#e255a3;#a14e7a;#e255a3" keyTimes="0;0.5;1"
+                dur="1.2s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="32" cy="20" r="6" fill="#fff" opacity="0.7">
+              <animate attributeName="r"
+                values="6;10;6" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity"
+                values="0.7;0.3;0.7" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="38" cy="26" r="2.5" fill="#fff" opacity="0.5">
+              <animate attributeName="r"
+                values="2.5;4;2.5" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+              <animate attributeName="opacity"
+                values="0.5;0.2;0.5" keyTimes="0;0.5;1"
+                dur="0.7s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+        </svg>
+      </div>
+      <!-- Animated Heart End -->
+      <div class="about-desc">
+        Digital Wall Magazine is a vibrant web platform created for students to showcase their creativity, share technical articles, and stay updated with college news and notices. Our mission is to empower students and faculty through technology, bringing together writers, artists, and innovators in one collaborative space.
+        <br><br>
+        On this platform, you’ll find blog posts, artwork, academic resources, and official announcements—all curated for and by our college community. Join us in building a digital legacy!
+      <div style="width:100%;display:flex;justify-content:center;margin:24px 0 0 0;flex-direction:column;align-items:center;">
+      <p style="font-size:32px;font-family:'Playfair Display',serif;color:#a14e7a;text-align:center;margin:0;">
+        Created with love for "RECIANS"
+      </p>
+
+      <div style="height:32px;"></div>
+    </section>
+    <div style="width:100%;display:flex;justify-content:center;margin:40px 0 24px 0;flex-direction:column;align-items:center;">
+      <p style="font-size:32px;font-family:'Playfair Display',serif;color:#a14e7a;text-align:center;margin:0;">
+        By our Team "Obsidian's Protocol"
+      </p>
+      <span style="font-size:32px;font-family:'Playfair Display',serif;display:inline-block; position:relative; margin-top:24px; width:1000px;">
+        
+        <span style="display:block; width:100%; border-bottom:3px solid #a14e7a; margin:0 auto 0 auto;"></span>
+      </span>
+      <!-- 2 line space -->
+      <div style="height:32px;"></div>
+      <!-- 4 columns for name, designation, and icons for LinkedIn, Email, GitHub -->
+      <div style="display:flex;justify-content:center;gap:32px;flex-wrap:nowrap;width:100%;max-width:900px;">
+        <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
+          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Rounak Kumar Mahto</div>
+          <div style="font-size:16px;color:#555;">Team LEADER</div>
+          <div style="display:flex;gap:12px;margin-top:8px;">
+            <a href="www.linkedin.com/in/rounak-kumar-mahto" target="_blank" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
+            </a>
+            <a href="mailto:projects.rounak@gmail.com" target="_blank" title="Email" style="display:flex;align-items:center;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" style="width:24px;height:24px;">
+            </a>
+            <a href="https://github.com/thechamprk" target="_blank" title="GitHub">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width:24px;height:24px;">
+            </a>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
+          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Khushi Kumari</div>
+          <div style="font-size:16px;color:#555;">Graphics Designer</div>
+          <div style="display:flex;gap:12px;margin-top:8px;">
+            <a href="https://www.linkedin.com/in/khushi-kumari-654617325/" target="_blank" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
+            </a>
+            <a href="mailto:khushi.ece.rec@gmail.com" target="_blank" title="Email" style="display:flex;align-items:center;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" style="width:24px;height:24px;">
+            </a>
+            <a href="https://github.com/khushikumarimishra" target="_blank" title="GitHub">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width:24px;height:24px;">
+            </a>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
+          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Shruti Kumari</div>
+          <div style="font-size:16px;color:#555;">UI/UX Designer and Frontend Engineer</div>
+          <div style="display:flex;gap:12px;margin-top:8px;">
+            <a href="https://www.linkedin.com/in/shruti-kumari-1933b9331/" target="_blank" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
+            </a>
+            <a href="mailto:shrutiiguptaa09@gmail.com" target="_blank" title="Email" style="display:flex;align-items:center;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" style="width:24px;height:24px;">
+            </a>
+            <a href="https://github.com/Shruti-kri08" target="_blank" title="GitHub">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width:24px;height:24px;">
+            </a>
+          </div>
+        </div>
+        <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
+          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Utkarsh Gupta</div>
+          <div style="font-size:16px;color:#555;">Backend Engineer</div>
+          <div style="display:flex;gap:12px;margin-top:8px;">
+            <a href="https://www.linkedin.com/in/utkarsh-gupta-cs/" target="_blank" title="LinkedIn">
+              <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
+            </a>
+            <a href="mailto:utkarsh.gupta.dev@gmail.com" target="_blank" title="Email" style="display:flex;align-items:center;">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Mail_%28iOS%29.svg" alt="Email" style="width:24px;height:24px;">
+            </a>
+            <a href="https://github.com/utkarsh-gupta-dev" target="_blank" title="GitHub">
+              <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub" style="width:24px;height:24px;">
+            </a>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+  <script>
+    // Subtle violet fog effect on mouse move (lower density)
+    const canvas = document.getElementById('sprinkle-canvas');
+    const ctx = canvas.getContext('2d');
+    let fogParticles = [];
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function addFog(x, y) {
+      for (let i = 0; i < 3; i++) { // Lower density (was 6)
+        fogParticles.push({
+          x: x + (Math.random() - 0.5) * 16,
+          y: y + (Math.random() - 0.5) * 16,
+          r: Math.random() * 22 + 16,
+          alpha: 0.13 + Math.random() * 0.09,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          life: 1
+        });
+      }
+    }
+
+    document.addEventListener('mousemove', function(e) {
+      addFog(e.clientX, e.clientY);
+    });
+
+    function animateFog() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = fogParticles.length - 1; i >= 0; i--) {
+        const p = fogParticles[i];
+        ctx.save();
+        ctx.globalAlpha = p.alpha * p.life;
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r);
+        grad.addColorStop(0, "rgba(186,143,255,0.22)"); // aesthetic violet center
+        grad.addColorStop(1, "rgba(186,143,255,0)");    // transparent violet edge
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, 2 * Math.PI);
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.restore();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.life -= 0.011;
+        if (p.life <= 0) fogParticles.splice(i, 1);
+      }
+      requestAnimationFrame(animateFog);
+    }
+    animateFog();
+  </script>
+  <footer style="width:100%;padding:24px 0 18px 0;text-align:center;background:none;">
+    <span style="font-size:24px;font-family:'Montserrat',sans-serif;color:#111;font-weight:700;letter-spacing:2px;text-decoration:underline;">
+      CONTACT US
+    </span>
+    <div style="margin-top:10px;display:flex;flex-direction:column;align-items:center;gap:8px;">
+      <span style="display:flex;align-items:center;gap:8px;">
+        <svg width="22" height="22" viewBox="0 0 32 32" style="vertical-align:middle;">
+          <g>
+            <rect x="4" y="8" width="24" height="16" rx="3" fill="#e255a3">
+              <animate attributeName="fill" values="#e255a3;#a14e7a;#e255a3" dur="1.2s" repeatCount="indefinite"/>
+            </rect>
+            <polyline points="6,10 16,20 26,10" fill="none" stroke="#fff" stroke-width="2">
+              <animate attributeName="points"
+                values="6,10 16,20 26,10; 6,12 16,22 26,12; 6,10 16,20 26,10"
+                keyTimes="0;0.5;1"
+                dur="1.2s" repeatCount="indefinite"/>
+            </polyline>
+          </g>
+        </svg>
+        <span style="font-size:16px;color:#222;">Email: web-admin@rec.ac.in</span>
+      </span>
+      <span style="display:flex;align-items:center;gap:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a14e7a" style="vertical-align:middle;">
+          <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 011 1V20a1 1 0 01-1 1C10.07 21 3 13.93 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.46.57 3.58a1 1 0 01-.24 1.01l-2.2 2.2z"/>
+        </svg>
+        <span style="font-size:16px;color:#222;">+91 90000XXXXX</span>
+      </span>
+      <span style="display:flex;align-items:center;gap:8px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="#a14e7a" style="vertical-align:middle;">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 6.17 11.54 6.44 11.79.34.31.87.31 1.21 0C12.83 20.54 19 14.25 19 9c0-3.87-3.13-7-7-7zm0 16.88C10.14 17.09 7 13.39 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 4.39-3.14 8.09-5 9.88zm0-13.38A4.38 4.38 0 007.62 9c0 2.42 1.97 5.44 4.38 8.54 2.41-3.1 4.38-6.12 4.38-8.54A4.38 4.38 0 0012 5.5zm0 6.5a2 2 0 110-4 2 2 0 010 4z"/>
+        </svg>
+        <span style="font-size:16px;color:#222;">Address: Ramgarh Engineering College, Ramgarh</span>
+      </span>
+    </div>
+  </footer>
 </body>
 </html>

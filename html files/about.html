@@ -7,6 +7,12 @@
   <!-- Google Fonts Montserrat and Playfair Display -->
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Delius&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Molengo&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Delius+Swash+Caps&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Major+Mono+Display&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Faculty+Glyphic&display=swap" rel="stylesheet">
   <style>
     .navbar {
       width: 100%;
@@ -96,15 +102,38 @@
       position: static;
     }
     .about-us-title {
-      font-size: 52px;
-      font-family: 'Playfair Display', serif;
+      font-size: 64px; /* Increased from 52px */
+      font-family: 'Patrick Hand SC', cursive;
+      font-weight: bold;
       color: #333;
       margin: 0;
       letter-spacing: 1px;
       text-align: center;
       background: none;
       box-shadow: none;
-      padding: 0;
+      padding: 0.2em 1.2em;
+      border: 4px solid #a14e7a;
+      border-radius: 24px;
+      box-shadow: 0 4px 32px #a14e7a22, 0 2px 8px #e255a322;
+      background: linear-gradient(90deg, #fff 80%, #ffe4ec 100%);
+      transition: box-shadow 0.2s, border 0.2s;
+      position: relative;
+      z-index: 1;
+      /* Decorative underline effect */
+      overflow: visible;
+    }
+    .about-us-title::after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 18%;
+      right: 18%;
+      bottom: -18px;
+      height: 7px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #e255a3 0%, #a14e7a 100%);
+      opacity: 0.22;
+      z-index: -1;
     }
     .about-section {
       max-width: 900px;
@@ -118,15 +147,20 @@
       align-items: center;
     }
     .about-title {
-      font-size: 32px;
-      font-family: 'Playfair Display', serif;
+      font-size: 36px; /* Increased by 4px */
+      font-family: 'Molengo', serif;
+      font-weight: bold;
       margin: 0 0 12px 0;
       color: #333;
       text-align: center;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+      text-decoration-thickness: 3px;
+      text-decoration-color: #a14e7a;
     }
     .about-desc {
       font-size: 22px;
-      font-family: 'Montserrat', Arial, sans-serif;
+      font-family: 'Delius', cursive, Arial, sans-serif;
       color: #222;
       margin-top: 0;
       margin-bottom: 24px;
@@ -137,11 +171,22 @@
       font-size: 17px;
       color: #555;
       margin-top: 32px;
-      font-style: italic;
+      /* font-style: italic; */ /* Removed italic */
       text-align: center;
     }
     .team-section {
       display: none !important;
+    }
+    .team-member-name {
+      font-family: 'Delius Swash Caps', cursive, 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: #a14e7a;
+    }
+    .team-member-designation {
+      font-family: 'Faculty Glyphic', serif;
+      font-size: 16px;
+      color: #555;
     }
     @media (max-width: 900px) {
       .team-cards {
@@ -190,7 +235,16 @@
       <a href="blog.html">Blogs</a>
       <a href="about.html">About Us</a>
       <a href="gallery.html">Gallery</a>
-      <a href="#">Notice</a>
+      <div class="dropdown" style="display:inline-block;position:relative;font-size:1.5em;">
+        <a href="#" class="dropdown-toggle" id="noticeDropdown" style="cursor:pointer;" onclick="event.preventDefault();document.getElementById('noticeMenu').classList.toggle('show');">Notice ▼</a>
+        <div id="noticeMenu" class="dropdown-menu" style="display:none;position:absolute;top:100%;left:0;min-width:120px;background:#fff;border-radius:0.7rem;box-shadow:0 4px 24px #c1a36b22;border:1px solid #ececec;z-index:100;">
+          <a class="dropdown-item" href="csenotice.html" style="display:block;padding:0.7em 1.2em;color:#222;text-decoration:none;border-radius:0.5em;">CSE</a>
+          <a class="dropdown-item" href="ecenotice.html" style="display:block;padding:0.7em 1.2em;color:#222;text-decoration:none;border-radius:0.5em;">ECE</a>
+          <a class="dropdown-item" href="eenotice.html" style="display:block;padding:0.7em 1.2em;color:#222;text-decoration:none;border-radius:0.5em;">EE</a>
+          <a class="dropdown-item" href="menotice.html" style="display:block;padding:0.7em 1.2em;color:#222;text-decoration:none;border-radius:0.5em;">ME</a>
+          <a class="dropdown-item" href="cenotice.html" style="display:block;padding:0.7em 1.2em;color:#222;text-decoration:none;border-radius:0.5em;">CE</a>
+        </div>
+      </div>
       <button class="login-btn">Login</button>
     </div>
   </div>
@@ -244,14 +298,14 @@
         <br><br>
         On this platform, you’ll find blog posts, artwork, academic resources, and official announcements—all curated for and by our college community. Join us in building a digital legacy!
       <div style="width:100%;display:flex;justify-content:center;margin:24px 0 0 0;flex-direction:column;align-items:center;">
-      <p style="font-size:32px;font-family:'Playfair Display',serif;color:#a14e7a;text-align:center;margin:0;">
+      <p style="font-size:32px;font-family:'Molengo', serif; color:#a14e7a;text-align:center;margin:0;">
         Created with love for "RECIANS"
       </p>
 
       <div style="height:32px;"></div>
     </section>
     <div style="width:100%;display:flex;justify-content:center;margin:40px 0 24px 0;flex-direction:column;align-items:center;">
-      <p style="font-size:32px;font-family:'Playfair Display',serif;color:#a14e7a;text-align:center;margin:0;">
+      <p style="font-size:32px;font-family:'Major Mono Display', monospace, 'Playfair Display',serif;color:#a14e7a;text-align:center;margin:0;">
         By our Team "Obsidian's Protocol"
       </p>
       <span style="font-size:32px;font-family:'Playfair Display',serif;display:inline-block; position:relative; margin-top:24px; width:1000px;">
@@ -263,8 +317,8 @@
       <!-- 4 columns for name, designation, and icons for LinkedIn, Email, GitHub -->
       <div style="display:flex;justify-content:center;gap:32px;flex-wrap:nowrap;width:100%;max-width:900px;">
         <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
-          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Rounak Kumar Mahto</div>
-          <div style="font-size:16px;color:#555;">Team LEADER</div>
+          <div class="team-member-name">Rounak Kumar Mahto</div>
+          <div class="team-member-designation">Team LEADER</div>
           <div style="display:flex;gap:12px;margin-top:8px;">
             <a href="www.linkedin.com/in/rounak-kumar-mahto" target="_blank" title="LinkedIn">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
@@ -278,8 +332,8 @@
           </div>
         </div>
         <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
-          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Khushi Kumari</div>
-          <div style="font-size:16px;color:#555;">Graphics Designer</div>
+          <div class="team-member-name">Khushi Kumari</div>
+          <div class="team-member-designation">Graphics Designer</div>
           <div style="display:flex;gap:12px;margin-top:8px;">
             <a href="https://www.linkedin.com/in/khushi-kumari-654617325/" target="_blank" title="LinkedIn">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
@@ -293,8 +347,8 @@
           </div>
         </div>
         <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
-          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Shruti Kumari</div>
-          <div style="font-size:16px;color:#555;">UI/UX Designer and Frontend Engineer</div>
+          <div class="team-member-name">Shruti Kumari</div>
+          <div class="team-member-designation">UI/UX Designer and Frontend Engineer</div>
           <div style="display:flex;gap:12px;margin-top:8px;">
             <a href="https://www.linkedin.com/in/shruti-kumari-1933b9331/" target="_blank" title="LinkedIn">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
@@ -308,8 +362,8 @@
           </div>
         </div>
         <div style="background:#fff;border-radius:4px;box-shadow:0 2px 8px 0 rgba(186,143,255,0.10);padding:18px 12px;min-width:180px;display:flex;flex-direction:column;align-items:center;width:22%;">
-          <div style="font-size:20px;font-weight:600;color:#a14e7a;">Utkarsh Gupta</div>
-          <div style="font-size:16px;color:#555;">Backend Engineer</div>
+          <div class="team-member-name">Utkarsh Gupta</div>
+          <div class="team-member-designation">Backend Engineer</div>
           <div style="display:flex;gap:12px;margin-top:8px;">
             <a href="https://www.linkedin.com/in/utkarsh-gupta-cs/" target="_blank" title="LinkedIn">
               <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" style="width:24px;height:24px;">
@@ -379,6 +433,17 @@
       requestAnimationFrame(animateFog);
     }
     animateFog();
+    // Notice dropdown menu logic
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('noticeMenu');
+      var toggle = document.getElementById('noticeDropdown');
+      if (!menu) return;
+      if (toggle && (toggle === e.target || toggle.contains(e.target))) {
+        menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+      } else if (!menu.contains(e.target)) {
+        menu.style.display = 'none';
+      }
+    });
   </script>
   <footer style="width:100%;padding:24px 0 18px 0;text-align:center;background:none;">
     <span style="font-size:24px;font-family:'Montserrat',sans-serif;color:#111;font-weight:700;letter-spacing:2px;text-decoration:underline;">

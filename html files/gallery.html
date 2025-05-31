@@ -4,6 +4,8 @@
   <meta charset="UTF-8">
   <title>Year Grid Gallery</title>
   <meta name="viewport" content="width=600, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=Limelight&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Delius&display=swap" rel="stylesheet">
   <style>
     html, body {
       height: 100%;
@@ -22,41 +24,13 @@
     .top-gallery-img {
       display: block;
       width: 100vw;
-      max-height: 280px;
+      height: 520px; /* Increased from 400px */
       object-fit: cover;
-      margin: 0 auto;
-      margin-bottom: 12px;
+      margin: 0 auto 12px auto;
     }
     @media (max-width: 600px) {
       .top-gallery-img {
-        max-height: 160px;
-      }
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #f3e3c7;
-      min-height: 100vh;
-      box-sizing: border-box;
-      overflow-y: auto;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      width: 100vw;
-      min-height: 100vh;
-    }
-    .top-gallery-img {
-      display: block;
-      width: 100vw;
-      max-height: 280px;
-      object-fit: cover;
-      margin: 0 auto;
-      margin-bottom: 12px;
-    }
-    @media (max-width: 600px) {
-      .top-gallery-img {
-        max-height: 160px;
+        height: 320px; /* Increased from 160px/400px */
       }
     }
     .top-bar {
@@ -79,37 +53,82 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 auto 12px auto;
-      font-size: 18px;
-      font-family: inherit;
-      width: 90px;
-      height: 28px;
-      border-radius: 3px;
-      background: #d2c4aa;
-      box-shadow: 0 2px 3px rgba(0,0,0,0.07);
-      color: #111;
+      margin: 0 auto 24px auto;
+      font-size: 2.3rem;
+      font-family: 'Delius', cursive, 'Playfair Display', serif;
+      width: 260px;
+      height: 64px;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.09);
+      color: #222;
       text-align: center;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      border: 3px solid #ececec;
+      transition: border 0.2s, box-shadow 0.2s;
+      text-transform: uppercase;
+      /* Heading-like appearance */
+      line-height: 1.1;
+      position: relative;
+    }
+    .year-label:after {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 20%;
+      right: 20%;
+      bottom: 10px;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, #c1a36b 0%, #56ab2f 100%);
+      opacity: 0.25;
     }
     .year-label.year-2025 {
+      border: 3px solid #995fff;
+      box-shadow: 0 2px 8px #995fff22;
       background: #f3e3c7;
-      border: 2px solid #995fff;
-      color: #111;
-      box-shadow: 1px 2px 3px #995fff55;
-      margin-bottom: 18px;
+      color: #6b3fd1;
     }
     .year-label.year-2024 {
+      border: 3px solid #228B22;
+      box-shadow: 0 2px 8px #228B2222;
       background: #f3e3c7;
-      border: 2px solid #228B22;
-      color: #111;
-      box-shadow: 1px 2px 3px #228B2255;
-      margin-bottom: 18px;
+      color: #228B22;
     }
     .year-label.year-2023 {
+      border: 3px solid #0077b6;
+      box-shadow: 0 2px 8px #0077b622;
       background: #f3e3c7;
-      border: 2px solid #0077b6;
-      color: #111;
-      box-shadow: 1px 2px 3px #0077b655;
-      margin-bottom: 18px;
+      color: #0077b6;
+    }
+    @media (max-width: 900px) {
+      .year-label {
+        font-size: 1.4rem;
+        width: 140px;
+        height: 38px;
+        border-radius: 10px;
+      }
+      .year-label:after {
+        height: 2px;
+        left: 18%;
+        right: 18%;
+        bottom: 5px;
+      }
+    }
+    @media (max-width: 600px) {
+      .year-label {
+        font-size: 1.1rem;
+        width: 90px;
+        height: 26px;
+        border-radius: 6px;
+      }
+      .year-label:after {
+        height: 2px;
+        left: 15%;
+        right: 15%;
+        bottom: 2px;
+      }
     }
 
     .horizontal-scroll-container {
@@ -192,10 +211,75 @@
     .horizontal-scroll-container.year-2023::-webkit-scrollbar-thumb {
       background: #0077b6;
     }
+    .top-gallery-img {
+      display: block;
+      width: 100vw;
+      height: 520px; /* Increased from 400px */
+      object-fit: cover;
+      margin: 0 auto 12px auto;
+    }
+    @media (max-width: 600px) {
+      .top-gallery-img {
+        height: 320px; /* Increased from 160px/400px */
+      }
+    }
+    /* Popup modal for gallery images */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(34,34,34,0.6);
+      justify-content: center;
+      align-items: center;
+      transition: background 0.25s;
+    }
+    .modal-overlay.active {
+      display: flex;
+    }
+    .modal-zoom-img {
+      max-width: 92vw;
+      max-height: 92vh;
+      border-radius: 24px;
+      box-shadow: 0 6px 24px 0 rgba(0,0,0,0.35);
+      background: #fff;
+      animation: zoomIn 0.35s cubic-bezier(0.34,1.56,0.64,1) both;
+      object-fit: contain;
+    }
+    @keyframes zoomIn {
+      0% { transform: scale(0.6); opacity:0; }
+      70% { transform: scale(1.08); opacity: 1;}
+      100% { transform: scale(1); opacity:1; }
+    }
   </style>
 </head>
 <body>
-  <img src="/assets/images/college.jpeg" alt="Top Gallery Banner" class="top-gallery-img">
+  <div style="position:relative;width:100vw;max-width:100vw;overflow:hidden;">
+    <img src="/assets/images/college.jpeg" alt="Top Gallery Banner" class="top-gallery-img">
+    <div style="
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:rgba(0,0,0,0.45);
+      color:#fff;
+      font-family:'Limelight', cursive, 'Playfair Display',serif;
+      font-size:2.5rem;
+      font-weight:700;
+      padding:18px 38px;
+      border-radius:18px;
+      box-shadow:0 4px 24px #0005;
+      text-align:center;
+      letter-spacing:0.04em;
+      pointer-events:none;
+      user-select:none;
+      ">
+      ♡ Our Memories ♡
+    </div>
+  </div>
   <div class="top-bar"></div>
   <div class="content">
     <div class="year-label year-2025">2025</div>
@@ -244,5 +328,39 @@
       </div>
     </div>
   </div>
+  <!-- Modal for image zoom -->
+  <div class="modal-overlay" id="modalOverlay">
+    <img src="" alt="Zoomed Image" class="modal-zoom-img" id="modalZoomImg">
+  </div>
+  <script>
+    // Popup for gallery images
+    document.addEventListener('DOMContentLoaded', function() {
+      const gridBoxes = document.querySelectorAll('.grid-box img');
+      const modalOverlay = document.getElementById('modalOverlay');
+      const modalZoomImg = document.getElementById('modalZoomImg');
+
+      gridBoxes.forEach(img => {
+        img.addEventListener('click', function() {
+          modalZoomImg.src = img.src;
+          modalZoomImg.alt = img.alt || '';
+          modalOverlay.classList.add('active');
+        });
+      });
+
+      modalOverlay.addEventListener('click', function(e) {
+        if (e.target === modalOverlay) {
+          modalOverlay.classList.remove('active');
+          modalZoomImg.src = '';
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+          modalOverlay.classList.remove('active');
+          modalZoomImg.src = '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

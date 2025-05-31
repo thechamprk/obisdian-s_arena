@@ -19,6 +19,46 @@
       width: 100vw;
       min-height: 100vh;
     }
+    .top-gallery-img {
+      display: block;
+      width: 100vw;
+      max-height: 280px;
+      object-fit: cover;
+      margin: 0 auto;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      .top-gallery-img {
+        max-height: 160px;
+      }
+    }
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f3e3c7;
+      min-height: 100vh;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      width: 100vw;
+      min-height: 100vh;
+    }
+    .top-gallery-img {
+      display: block;
+      width: 100vw;
+      max-height: 280px;
+      object-fit: cover;
+      margin: 0 auto;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 600px) {
+      .top-gallery-img {
+        max-height: 160px;
+      }
+    }
     .top-bar {
       width: 100vw;
       height: 32px;
@@ -155,6 +195,7 @@
   </style>
 </head>
 <body>
+  <img src="/assets/images/college.jpeg" alt="Top Gallery Banner" class="top-gallery-img">
   <div class="top-bar"></div>
   <div class="content">
     <div class="year-label year-2025">2025</div>

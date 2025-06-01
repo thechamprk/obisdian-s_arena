@@ -1001,5 +1001,18 @@
       });
     })();
   </script>
+  <div style="text-align:center; margin: 2rem 0 1rem 0; color: #555; font-size: 1.05rem;">
+    <span id="viewCounter"></span>
+  </div>
+  <script>
+    // Simple view counter using localStorage
+    (function() {
+      const key = 'dwmagazine_view_count';
+      let count = parseInt(localStorage.getItem(key) || '0', 10);
+      count++;
+      localStorage.setItem(key, count);
+      document.getElementById('viewCounter').textContent = `Views: ${count}`;
+    })();
+  </script>
 </body>
 </html>
